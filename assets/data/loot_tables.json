@@ -1,0 +1,445 @@
+{
+ "schema_version": 1,
+ "entries": [
+  {
+   "id": "world_common",
+   "rows": [
+    {
+     "item": "health_potion",
+     "chance": 40
+    },
+    {
+     "item": "leather_scraps",
+     "chance": 60,
+     "min": 1,
+     "max": 3
+    }
+   ]
+  },
+  {
+   "id": "world_rare",
+   "rows": [
+    {
+     "group": 1,
+     "item": "gem_ruby",
+     "chance": 30
+    },
+    {
+     "group": 1,
+     "item": "rusty_dagger",
+     "chance": 70
+    }
+   ]
+  },
+  {
+   "id": "wolf",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 1,
+     "max": 4
+    },
+    {
+     "item": "wolf_fang",
+     "chance": 55,
+     "min": 1,
+     "max": 2
+    },
+    {
+     "ref": "world_common",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "wolf_skin",
+   "rows": [
+    {
+     "item": "wolf_pelt",
+     "chance": 100
+    },
+    {
+     "item": "leather_scraps",
+     "chance": 40
+    }
+   ]
+  },
+  {
+   "id": "dire_wolf",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 20,
+     "max": 45
+    },
+    {
+     "item": "wolf_fang",
+     "chance": 100,
+     "min": 2,
+     "max": 4
+    },
+    {
+     "ref": "world_rare",
+     "chance": 60
+    }
+   ]
+  },
+  {
+   "id": "dire_wolf_skin",
+   "rows": [
+    {
+     "item": "dire_wolf_pelt",
+     "chance": 100
+    }
+   ]
+  },
+  {
+   "id": "boar",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 80,
+     "min": 1,
+     "max": 3
+    },
+    {
+     "item": "boar_meat",
+     "chance": 90,
+     "min": 1,
+     "max": 2
+    }
+   ]
+  },
+  {
+   "id": "boar_skin",
+   "rows": [
+    {
+     "item": "boar_hide",
+     "chance": 100
+    }
+   ]
+  },
+  {
+   "id": "deer",
+   "rows": [
+    {
+     "item": "venison",
+     "chance": 100,
+     "min": 1,
+     "max": 2
+    }
+   ]
+  },
+  {
+   "id": "deer_skin",
+   "rows": [
+    {
+     "item": "deer_hide",
+     "chance": 100
+    }
+   ]
+  },
+  {
+   "id": "chicken",
+   "rows": [
+    {
+     "item": "feather",
+     "chance": 100,
+     "min": 1,
+     "max": 3
+    },
+    {
+     "item": "egg",
+     "chance": 35
+    },
+    {
+     "item": "coin",
+     "chance": 20,
+     "min": 1,
+     "max": 1
+    }
+   ]
+  },
+  {
+   "id": "sheep",
+   "rows": [
+    {
+     "item": "mutton",
+     "chance": 100,
+     "min": 1,
+     "max": 2
+    },
+    {
+     "item": "wool",
+     "chance": 50
+    }
+   ]
+  },
+  {
+   "id": "sheep_shear",
+   "rows": [
+    {
+     "item": "wool",
+     "chance": 100,
+     "min": 1,
+     "max": 3
+    }
+   ]
+  },
+  {
+   "id": "bandit",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 4,
+     "max": 12
+    },
+    {
+     "item": "bandit_badge",
+     "chance": 70
+    },
+    {
+     "group": 1,
+     "item": "rusty_dagger",
+     "chance": 8
+    },
+    {
+     "group": 1,
+     "item": "health_potion",
+     "chance": 20
+    },
+    {
+     "ref": "world_common",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "bandit_chief",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 40,
+     "max": 90
+    },
+    {
+     "item": "chief_signet",
+     "chance": 100
+    },
+    {
+     "ref": "world_rare",
+     "chance": 100
+    }
+   ]
+  },
+  {
+   "id": "chest_common",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 10,
+     "max": 30
+    },
+    {
+     "ref": "world_common",
+     "chance": 100
+    },
+    {
+     "ref": "world_rare",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "shadow_imp",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 1,
+     "max": 3
+    },
+    {
+     "item": "black_shard",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 5.0
+    }
+   ]
+  },
+  {
+   "id": "armored_beetle",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 1,
+     "max": 4
+    },
+    {
+     "item": "armored_carapace",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 5.0
+    }
+   ]
+  },
+  {
+   "id": "gloom_weaver",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 2,
+     "max": 5
+    },
+    {
+     "item": "black_shard",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 7.0
+    }
+   ]
+  },
+  {
+   "id": "elf",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 5,
+     "max": 17
+    },
+    {
+     "item": "elf_ear",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 5.0
+    }
+   ]
+  },
+  {
+   "id": "stone_golem",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 5,
+     "max": 19
+    },
+    {
+     "item": "rock",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 7.0
+    }
+   ]
+  },
+  {
+   "id": "void_stalker",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 4,
+     "max": 14
+    },
+    {
+     "item": "black_shard",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 7.0
+    }
+   ]
+  },
+  {
+   "id": "iron_golem",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 12,
+     "max": 36
+    },
+    {
+     "item": "chunk_of_iron",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 7.0
+    }
+   ]
+  },
+  {
+   "id": "nightmare_shade",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 7,
+     "max": 23
+    },
+    {
+     "item": "black_shard",
+     "chance": 10
+    }
+   ]
+  },
+  {
+   "id": "drow_elf",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 15,
+     "max": 45
+    },
+    {
+     "item": "drow_elf_ear",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 5.0
+    }
+   ]
+  },
+  {
+   "id": "blood_bat",
+   "rows": [
+    {
+     "item": "coin",
+     "chance": 100,
+     "min": 3,
+     "max": 11
+    },
+    {
+     "item": "blood_bat_eye",
+     "chance": 10
+    },
+    {
+     "item": "gem_ruby",
+     "chance": 5.0
+    }
+   ]
+  }
+ ]
+}

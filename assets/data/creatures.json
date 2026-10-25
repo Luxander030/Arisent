@@ -1,0 +1,683 @@
+{
+ "schema_version": 1,
+ "entries": [
+  {
+   "id": "wolf",
+   "name": "Grey Wolf",
+   "body": "quadruped",
+   "height": 0.9,
+   "color": "#6e6a66",
+   "health": 60,
+   "level": 3,
+   "walk_speed": 1.8,
+   "run_speed": 7.5,
+   "faction": "wildlife_hostile",
+   "behaviour": "aggressive",
+   "aggro_radius": 16,
+   "leash": 50,
+   "attack": {
+    "damage": 7,
+    "range": 1.9,
+    "interval": 1.4
+   },
+   "xp": 18,
+   "skill_xp": [
+    {
+     "skill": "hunting",
+     "amount": 6
+    }
+   ],
+   "loot_table": "wolf",
+   "harvest": {
+    "loot_table": "wolf_skin",
+    "skill": "skinning",
+    "skill_xp": 8,
+    "text": "Skin"
+   },
+   "respawn": 120
+  },
+  {
+   "id": "dire_wolf",
+   "name": "Old Greymane",
+   "body": "quadruped",
+   "height": 1.25,
+   "color": "#3a3634",
+   "health": 260,
+   "level": 8,
+   "walk_speed": 1.8,
+   "run_speed": 8.0,
+   "faction": "wildlife_hostile",
+   "behaviour": "aggressive",
+   "aggro_radius": 22,
+   "leash": 70,
+   "attack": {
+    "damage": 16,
+    "range": 2.3,
+    "interval": 1.5
+   },
+   "xp": 120,
+   "skill_xp": [
+    {
+     "skill": "hunting",
+     "amount": 40
+    }
+   ],
+   "loot_table": "dire_wolf",
+   "harvest": {
+    "loot_table": "dire_wolf_skin",
+    "skill": "skinning",
+    "skill_xp": 30,
+    "text": "Skin"
+   },
+   "despawn": "ambient",
+   "respawn": 1800,
+   "reactions": [
+    {
+     "event": "aggro",
+     "action": "yell",
+     "text": "*a deep growl*"
+    },
+    {
+     "event": "health_below",
+     "value": 0.3,
+     "action": "call_help",
+     "radius": 30
+    }
+   ]
+  },
+  {
+   "id": "boar",
+   "name": "Wild Boar",
+   "body": "quadruped",
+   "height": 0.8,
+   "color": "#5a3e2b",
+   "health": 70,
+   "level": 2,
+   "walk_speed": 1.5,
+   "run_speed": 6.5,
+   "faction": "wildlife",
+   "behaviour": "defensive",
+   "aggro_radius": 0,
+   "leash": 40,
+   "attack": {
+    "damage": 6,
+    "range": 1.8,
+    "interval": 1.6
+   },
+   "xp": 14,
+   "skill_xp": [
+    {
+     "skill": "hunting",
+     "amount": 5
+    }
+   ],
+   "loot_table": "boar",
+   "harvest": {
+    "loot_table": "boar_skin",
+    "skill": "skinning",
+    "skill_xp": 6,
+    "text": "Skin"
+   },
+   "respawn": 90
+  },
+  {
+   "id": "deer",
+   "name": "Red Deer",
+   "body": "quadruped",
+   "height": 1.3,
+   "color": "#8a5a34",
+   "health": 40,
+   "level": 1,
+   "walk_speed": 1.6,
+   "run_speed": 9.0,
+   "faction": "wildlife",
+   "behaviour": "skittish",
+   "aggro_radius": 0,
+   "flee_radius": 24,
+   "leash": 60,
+   "attack": {
+    "damage": 0,
+    "range": 0,
+    "interval": 2
+   },
+   "xp": 10,
+   "skill_xp": [
+    {
+     "skill": "hunting",
+     "amount": 6
+    }
+   ],
+   "loot_table": "deer",
+   "harvest": {
+    "loot_table": "deer_skin",
+    "skill": "skinning",
+    "skill_xp": 6,
+    "text": "Skin"
+   },
+   "respawn": 120
+  },
+  {
+   "id": "chicken",
+   "name": "Chicken",
+   "body": "quadruped",
+   "height": 0.45,
+   "color": "#eeeae0",
+   "health": 8,
+   "level": 1,
+   "walk_speed": 0.9,
+   "run_speed": 3.5,
+   "faction": "farm",
+   "behaviour": "passive",
+   "aggro_radius": 0,
+   "flee_radius": 0,
+   "leash": 30,
+   "attack": {
+    "damage": 0,
+    "range": 0,
+    "interval": 2
+   },
+   "xp": 3,
+   "skill_xp": [
+    {
+     "skill": "farming",
+     "amount": 2
+    }
+   ],
+   "loot_table": "chicken",
+   "respawn": 45
+  },
+  {
+   "id": "sheep",
+   "name": "Sheep",
+   "body": "quadruped",
+   "height": 0.9,
+   "color": "#e8e4da",
+   "health": 25,
+   "level": 1,
+   "walk_speed": 0.9,
+   "run_speed": 4.5,
+   "faction": "farm",
+   "behaviour": "passive",
+   "aggro_radius": 0,
+   "leash": 40,
+   "attack": {
+    "damage": 0,
+    "range": 0,
+    "interval": 2
+   },
+   "xp": 5,
+   "skill_xp": [
+    {
+     "skill": "farming",
+     "amount": 3
+    }
+   ],
+   "loot_table": "sheep",
+   "harvest": {
+    "loot_table": "sheep_shear",
+    "skill": "farming",
+    "skill_xp": 2,
+    "text": "Shear"
+   },
+   "respawn": 60
+  },
+  {
+   "id": "bandit",
+   "name": "Bandit",
+   "body": "humanoid",
+   "height": 1.8,
+   "color": "#7a3b2e",
+   "health": 90,
+   "level": 4,
+   "walk_speed": 1.6,
+   "run_speed": 5.2,
+   "faction": "bandits",
+   "behaviour": "aggressive",
+   "aggro_radius": 18,
+   "leash": 55,
+   "attack": {
+    "damage": 9,
+    "range": 2.0,
+    "interval": 1.3
+   },
+   "xp": 30,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 10
+    }
+   ],
+   "loot_table": "bandit",
+   "respawn": 180,
+   "reactions": [
+    {
+     "event": "aggro",
+     "action": "yell",
+     "text": "Your coin or your life!"
+    },
+    {
+     "event": "damaged",
+     "action": "call_help",
+     "radius": 20
+    }
+   ]
+  },
+  {
+   "id": "bandit_chief",
+   "name": "Bandit Chief",
+   "body": "humanoid",
+   "height": 2.0,
+   "color": "#3b1e18",
+   "health": 320,
+   "level": 7,
+   "walk_speed": 1.5,
+   "run_speed": 5.0,
+   "faction": "bandits",
+   "behaviour": "aggressive",
+   "aggro_radius": 20,
+   "leash": 60,
+   "attack": {
+    "damage": 18,
+    "range": 2.2,
+    "interval": 1.5
+   },
+   "xp": 150,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 50
+    }
+   ],
+   "loot_table": "bandit_chief",
+   "despawn": "persistent",
+   "respawn": 3600,
+   "reactions": [
+    {
+     "event": "health_below",
+     "value": 0.5,
+     "action": "call_help",
+     "radius": 40
+    },
+    {
+     "event": "death",
+     "action": "set_flag",
+     "flag": "bandit_chief_killed"
+    }
+   ]
+  },
+  {
+   "id": "shadow_imp",
+   "name": "Shadow Imp",
+   "body": "humanoid",
+   "height": 1.1,
+   "color": "#2c2240",
+   "health": 40,
+   "level": 1,
+   "walk_speed": 1.8,
+   "run_speed": 6.2,
+   "faction": "monsters",
+   "behaviour": "aggressive",
+   "aggro_radius": 14,
+   "leash": 45,
+   "attack": {
+    "damage": 5.2,
+    "range": 1.6,
+    "interval": 1.4
+   },
+   "xp": 8,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 2
+    }
+   ],
+   "loot_table": "shadow_imp",
+   "respawn": 180,
+   "lore": "The smallest thing in this realm that still has teeth. They gather wherever the light gives out, which is why they are the first creature almost everyone meets.",
+   "trait": "Normal Enemy",
+   "source": "luxs-rpg-public normal.js (Shadow Imp)"
+  },
+  {
+   "id": "armored_beetle",
+   "name": "Armored Beetle",
+   "body": "quadruped",
+   "height": 0.7,
+   "color": "#3f5236",
+   "health": 69,
+   "level": 1,
+   "walk_speed": 1.0,
+   "run_speed": 3.2,
+   "faction": "monsters",
+   "behaviour": "aggressive",
+   "aggro_radius": 9,
+   "leash": 45,
+   "attack": {
+    "damage": 5.6,
+    "range": 1.8,
+    "interval": 1.8
+   },
+   "xp": 11,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 3
+    }
+   ],
+   "loot_table": "armored_beetle",
+   "respawn": 180,
+   "lore": "Its shell is considerably thicker than its temper. It will not do much to you, but talking it out of the fight takes a genuinely tedious amount of effort.",
+   "trait": "High HP, Low ATK",
+   "source": "luxs-rpg-public normal.js (Armored Beetle)",
+   "resist": {
+    "fire": 0.4
+   }
+  },
+  {
+   "id": "gloom_weaver",
+   "name": "Gloom Weaver",
+   "body": "humanoid",
+   "height": 1.7,
+   "color": "#3d2f55",
+   "health": 44,
+   "level": 1,
+   "walk_speed": 1.4,
+   "run_speed": 4.4,
+   "faction": "monsters",
+   "behaviour": "aggressive",
+   "aggro_radius": 18,
+   "leash": 45,
+   "attack": {
+    "damage": 9.1,
+    "range": 12.0,
+    "interval": 2.2
+   },
+   "xp": 13,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 4
+    }
+   ],
+   "loot_table": "gloom_weaver",
+   "respawn": 180,
+   "lore": "It never touches you. It sits at the edge of what you can see and works instead on the part of you that decides what is real.",
+   "trait": "Sanity Drainer",
+   "source": "luxs-rpg-public sanity.js (Gloom Weaver)",
+   "sanity_damage": 14.7,
+   "reactions": [
+    {
+     "event": "aggro",
+     "action": "yell",
+     "text": "Nightmare may stalk you..."
+    }
+   ]
+  },
+  {
+   "id": "elf",
+   "name": "Elf",
+   "body": "humanoid",
+   "height": 1.85,
+   "color": "#5f9e4f",
+   "health": 113,
+   "level": 5,
+   "walk_speed": 1.7,
+   "run_speed": 6.0,
+   "faction": "elves",
+   "behaviour": "aggressive",
+   "aggro_radius": 16,
+   "leash": 45,
+   "attack": {
+    "damage": 12.0,
+    "range": 2.0,
+    "interval": 1.4
+   },
+   "xp": 38,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 12
+    }
+   ],
+   "loot_table": "elf",
+   "respawn": 180,
+   "lore": "Convinced the Drow's god is a bedtime story, and says so loudly, at length, and well within earshot. Has never once wondered why the realm has an owner's name on it.",
+   "trait": "Hates Drow Elves",
+   "source": "luxs-rpg-public normal.js (Elf)",
+   "reactions": [
+    {
+     "event": "aggro",
+     "action": "yell",
+     "text": "We find Drow Elves goofy in a way that they fear a so called \"god\". He certainly can't be real... right?"
+    }
+   ]
+  },
+  {
+   "id": "stone_golem",
+   "name": "Stone Golem",
+   "body": "humanoid",
+   "height": 2.6,
+   "color": "#8a857e",
+   "health": 200,
+   "level": 5,
+   "walk_speed": 1.0,
+   "run_speed": 2.6,
+   "faction": "monsters",
+   "behaviour": "aggressive",
+   "aggro_radius": 12,
+   "leash": 30,
+   "attack": {
+    "damage": 26.8,
+    "range": 2.8,
+    "interval": 2.6
+   },
+   "xp": 69,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 23
+    }
+   ],
+   "loot_table": "stone_golem",
+   "respawn": 180,
+   "lore": "Something shaped this out of the ground and then lost interest in it. It moves the way weather does: slowly, and without any particular opinion about you.",
+   "trait": "Slow Titan",
+   "source": "luxs-rpg-public normal.js (Stone Golem)",
+   "resist": {
+    "fire": 0.6
+   }
+  },
+  {
+   "id": "void_stalker",
+   "name": "Void Stalker",
+   "body": "humanoid",
+   "height": 1.9,
+   "color": "#1b1630",
+   "health": 128,
+   "level": 5,
+   "walk_speed": 1.8,
+   "run_speed": 7.0,
+   "faction": "monsters",
+   "behaviour": "aggressive",
+   "aggro_radius": 20,
+   "leash": 45,
+   "attack": {
+    "damage": 11.0,
+    "range": 1.9,
+    "interval": 1.3
+   },
+   "xp": 52,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 17
+    }
+   ],
+   "loot_table": "void_stalker",
+   "respawn": 180,
+   "lore": "It knows something larger is hunting it, and it has made peace with that by passing the feeling along to you.",
+   "trait": "Elite Sanity Predator",
+   "source": "luxs-rpg-public sanity.js (Void Stalker)",
+   "sanity_damage": 16.6,
+   "reactions": [
+    {
+     "event": "aggro",
+     "action": "yell",
+     "text": "...but Lux stalks us all."
+    }
+   ]
+  },
+  {
+   "id": "iron_golem",
+   "name": "Iron Golem",
+   "body": "humanoid",
+   "height": 2.9,
+   "color": "#686c74",
+   "health": 378,
+   "level": 7,
+   "walk_speed": 0.9,
+   "run_speed": 2.4,
+   "faction": "monsters",
+   "behaviour": "aggressive",
+   "aggro_radius": 12,
+   "leash": 30,
+   "attack": {
+    "damage": 35.0,
+    "range": 3.0,
+    "interval": 2.8
+   },
+   "xp": 142,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 47
+    }
+   ],
+   "loot_table": "iron_golem",
+   "respawn": 180,
+   "lore": "The same idea as a Stone Golem, executed by someone who could afford better material. Fire runs off it. Patience does not.",
+   "trait": "Slow Titan",
+   "source": "luxs-rpg-public normal.js (Iron Golem)",
+   "sanity_damage": 3.2,
+   "resist": {
+    "fire": 0.7
+   }
+  },
+  {
+   "id": "nightmare_shade",
+   "name": "Nightmare Shade",
+   "body": "humanoid",
+   "height": 2.0,
+   "color": "#120c1e",
+   "health": 199,
+   "level": 8,
+   "walk_speed": 1.5,
+   "run_speed": 5.0,
+   "faction": "monsters",
+   "behaviour": "aggressive",
+   "aggro_radius": 20,
+   "leash": 45,
+   "attack": {
+    "damage": 23.1,
+    "range": 10.0,
+    "interval": 2.0
+   },
+   "xp": 94,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 31
+    }
+   ],
+   "loot_table": "nightmare_shade",
+   "respawn": 180,
+   "lore": "Considers your mind a meal and says so out loud. The wound it leaves is not anywhere you can look at.",
+   "trait": "Elite Sanity Predator",
+   "source": "luxs-rpg-public sanity.js (Nightmare Shade)",
+   "sanity_damage": 40.0,
+   "reactions": [
+    {
+     "event": "aggro",
+     "action": "yell",
+     "text": "Your mind is a feast."
+    }
+   ]
+  },
+  {
+   "id": "drow_elf",
+   "name": "Drow Elf",
+   "body": "humanoid",
+   "height": 1.8,
+   "color": "#43385f",
+   "health": 200,
+   "level": 10,
+   "walk_speed": 1.7,
+   "run_speed": 6.0,
+   "faction": "drow",
+   "behaviour": "aggressive",
+   "aggro_radius": 24,
+   "leash": 45,
+   "attack": {
+    "damage": 34.9,
+    "range": 16.0,
+    "interval": 2.0
+   },
+   "xp": 107,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 35
+    }
+   ],
+   "loot_table": "drow_elf",
+   "respawn": 180,
+   "lore": "Drow bow to exactly one god and will tell you which one before they draw. Their surface cousins find this hilarious, which is most of the reason the two cannot be left in the same clearing.",
+   "trait": "Hates Regular Elves",
+   "source": "luxs-rpg-public normal.js (Drow Elf)",
+   "sanity_damage": 7.7,
+   "reactions": [
+    {
+     "event": "aggro",
+     "action": "yell",
+     "text": "We Drow Elves only bow to one god. That one being the creator of this realm."
+    }
+   ]
+  },
+  {
+   "id": "blood_bat",
+   "name": "Blood Bat",
+   "body": "quadruped",
+   "height": 0.45,
+   "color": "#6a1622",
+   "health": 104,
+   "level": 6,
+   "walk_speed": 2.0,
+   "run_speed": 7.5,
+   "faction": "monsters",
+   "behaviour": "aggressive",
+   "aggro_radius": 16,
+   "leash": 45,
+   "attack": {
+    "damage": 8.9,
+    "range": 1.6,
+    "interval": 1.2
+   },
+   "xp": 41,
+   "skill_xp": [
+    {
+     "skill": "combat",
+     "amount": 13
+    }
+   ],
+   "loot_table": "blood_bat",
+   "respawn": 180,
+   "lore": "The smallest thing here that drinks. It closes what you open, slowly, and it burns like paper.",
+   "trait": "Regenerates a Small Amount of HP per Turn",
+   "source": "luxs-rpg-public vampires.js (Blood Bat)",
+   "sanity_damage": 3.8,
+   "resist": {
+    "fire": -1.0
+   },
+   "regen": 6.1
+  }
+ ]
+}

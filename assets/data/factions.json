@@ -1,0 +1,55 @@
+{
+ "schema_version": 1,
+ "entries": [
+  {
+   "id": "player",
+   "hostile_to": [
+    "monsters",
+    "bandits",
+    "wildlife_hostile",
+    "elves",
+    "drow"
+   ]
+  },
+  {
+   "id": "monsters",
+   "hostile_to": [
+    "player"
+   ]
+  },
+  {
+   "id": "bandits",
+   "hostile_to": [
+    "player"
+   ]
+  },
+  {
+   "id": "wildlife_hostile",
+   "hostile_to": [
+    "player"
+   ]
+  },
+  {
+   "id": "wildlife",
+   "hostile_to": []
+  },
+  {
+   "id": "farm",
+   "hostile_to": []
+  },
+  {
+   "id": "elves",
+   "hostile_to": [
+    "player",
+    "drow"
+   ]
+  },
+  {
+   "id": "drow",
+   "hostile_to": [
+    "player",
+    "elves"
+   ]
+  }
+ ]
+}

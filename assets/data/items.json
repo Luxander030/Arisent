@@ -1,0 +1,221 @@
+{
+ "schema_version": 1,
+ "entries": [
+  {
+   "id": "coin",
+   "name": "Coin",
+   "stack": 99999,
+   "value": 1,
+   "category": "currency",
+   "color": "#f2c94c",
+   "size": 0.15
+  },
+  {
+   "id": "wolf_pelt",
+   "name": "Wolf Pelt",
+   "stack": 20,
+   "value": 8,
+   "category": "hide",
+   "color": "#77716b"
+  },
+  {
+   "id": "dire_wolf_pelt",
+   "name": "Greymane's Pelt",
+   "stack": 1,
+   "value": 120,
+   "category": "hide",
+   "color": "#2e2b29",
+   "ground_policy": "quest"
+  },
+  {
+   "id": "boar_hide",
+   "name": "Boar Hide",
+   "stack": 20,
+   "value": 6,
+   "category": "hide",
+   "color": "#5a3e2b"
+  },
+  {
+   "id": "deer_hide",
+   "name": "Deer Hide",
+   "stack": 20,
+   "value": 7,
+   "category": "hide",
+   "color": "#8a5a34"
+  },
+  {
+   "id": "wolf_fang",
+   "name": "Wolf Fang",
+   "stack": 50,
+   "value": 3,
+   "category": "trophy",
+   "color": "#f0ece0",
+   "size": 0.12
+  },
+  {
+   "id": "boar_meat",
+   "name": "Boar Meat",
+   "stack": 20,
+   "value": 4,
+   "category": "food",
+   "color": "#b3443a"
+  },
+  {
+   "id": "venison",
+   "name": "Venison",
+   "stack": 20,
+   "value": 5,
+   "category": "food",
+   "color": "#9c3b33"
+  },
+  {
+   "id": "feather",
+   "name": "Feather",
+   "stack": 99,
+   "value": 1,
+   "category": "crafting",
+   "color": "#ffffff",
+   "size": 0.12
+  },
+  {
+   "id": "egg",
+   "name": "Egg",
+   "stack": 30,
+   "value": 2,
+   "category": "food",
+   "color": "#f3ead2",
+   "size": 0.12
+  },
+  {
+   "id": "wool",
+   "name": "Wool",
+   "stack": 50,
+   "value": 3,
+   "category": "crafting",
+   "color": "#f0ece2"
+  },
+  {
+   "id": "mutton",
+   "name": "Mutton",
+   "stack": 20,
+   "value": 4,
+   "category": "food",
+   "color": "#b54a44"
+  },
+  {
+   "id": "leather_scraps",
+   "name": "Leather Scraps",
+   "stack": 50,
+   "value": 2,
+   "category": "crafting",
+   "color": "#7b5a3c"
+  },
+  {
+   "id": "rusty_dagger",
+   "name": "Rusty Dagger",
+   "stack": 1,
+   "value": 15,
+   "category": "weapon",
+   "color": "#8a7a6a"
+  },
+  {
+   "id": "health_potion",
+   "name": "Health Potion",
+   "stack": 10,
+   "value": 25,
+   "category": "consumable",
+   "color": "#d23c3c"
+  },
+  {
+   "id": "bandit_badge",
+   "name": "Bandit Badge",
+   "stack": 50,
+   "value": 4,
+   "category": "trophy",
+   "color": "#c0a060",
+   "size": 0.12
+  },
+  {
+   "id": "chief_signet",
+   "name": "Chief's Signet Ring",
+   "stack": 1,
+   "value": 200,
+   "category": "quest",
+   "color": "#e0c060",
+   "size": 0.1,
+   "ground_policy": "quest"
+  },
+  {
+   "id": "gem_ruby",
+   "name": "Ruby",
+   "stack": 20,
+   "value": 80,
+   "category": "gem",
+   "color": "#e0115f",
+   "size": 0.1
+  },
+  {
+   "id": "black_shard",
+   "name": "Black Shard",
+   "value": 4,
+   "category": "trophy",
+   "color": "#1a1a22",
+   "description": "A black, sharp shard. Seems like it could sell for a bit of money.",
+   "stack": 20
+  },
+  {
+   "id": "armored_carapace",
+   "name": "Armored Carapace",
+   "value": 10,
+   "category": "trophy",
+   "color": "#4b5a3c",
+   "description": "A very solid piece of carapace. It could probably be sold for a good amount.",
+   "stack": 20
+  },
+  {
+   "id": "elf_ear",
+   "name": "Elf Ear",
+   "value": 20,
+   "category": "trophy",
+   "color": "#d9b38c",
+   "description": "A rare ear of an Elf. Could sell for a good amount.",
+   "stack": 20
+  },
+  {
+   "id": "drow_elf_ear",
+   "name": "Drow Elf Ear",
+   "value": 16,
+   "category": "trophy",
+   "color": "#6c5f8f",
+   "description": "The ear of a Drow Elf. Seems as if it could stabilize your mind.",
+   "stack": 20
+  },
+  {
+   "id": "rock",
+   "name": "Rock",
+   "value": 0,
+   "category": "junk",
+   "color": "#8a857e",
+   "description": "A rock. Literally, just a rock.",
+   "stack": 20
+  },
+  {
+   "id": "chunk_of_iron",
+   "name": "Chunk of Iron",
+   "value": 20,
+   "category": "crafting",
+   "color": "#7a7d84",
+   "description": "A chunk of raw iron. Worth more once refined.",
+   "stack": 20
+  },
+  {
+   "id": "blood_bat_eye",
+   "name": "Blood Bat Eye",
+   "value": 30,
+   "category": "trophy",
+   "color": "#b0182a",
+   "description": "The eye of a blood bat. Quite valuable to certain people.",
+   "stack": 20
+  }
+ ]
+}

@@ -1,0 +1,72 @@
+{
+ "schema_version": 1,
+ "entries": [
+  {
+   "id": "forest_ambient",
+   "biomes": [
+    "Temperate Forest",
+    "Tropical Forest"
+   ],
+   "rows": [
+    {
+     "archetype": "deer",
+     "weight": 3,
+     "group_min": 1,
+     "group_max": 3
+    },
+    {
+     "archetype": "boar",
+     "weight": 2,
+     "group_min": 1,
+     "group_max": 2
+    },
+    {
+     "archetype": "wolf",
+     "weight": 1,
+     "group_min": 2,
+     "group_max": 3
+    }
+   ],
+   "density": 1.2
+  },
+  {
+   "id": "grass_ambient",
+   "biomes": [
+    "Grassland"
+   ],
+   "rows": [
+    {
+     "archetype": "deer",
+     "weight": 2,
+     "group_min": 2,
+     "group_max": 4
+    },
+    {
+     "archetype": "boar",
+     "weight": 1,
+     "group_min": 1,
+     "group_max": 2
+    }
+   ],
+   "density": 1.0
+  },
+  {
+   "id": "north_ambient",
+   "biomes": [
+    "Frozen Fjords",
+    "Northern Mountains"
+   ],
+   "rows": [
+    {
+     "archetype": "wolf",
+     "weight": 1,
+     "group_min": 2,
+     "group_max": 4
+    }
+   ],
+   "density": 0.6,
+   "tod_start": 18,
+   "tod_end": 6
+  }
+ ]
+}

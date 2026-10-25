@@ -1,0 +1,947 @@
+{
+ "schema_version": 1,
+ "assets": [
+  {
+   "id": "nature.tree_oak",
+   "path": "res://assets/models/nature/tree_oak.glb",
+   "category": "tree",
+   "scale": 9,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_default",
+   "path": "res://assets/models/nature/tree_default.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_detailed",
+   "path": "res://assets/models/nature/tree_detailed.glb",
+   "category": "tree",
+   "scale": 9,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_fat",
+   "path": "res://assets/models/nature/tree_fat.glb",
+   "category": "tree",
+   "scale": 9,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_tall",
+   "path": "res://assets/models/nature/tree_tall.glb",
+   "category": "tree",
+   "scale": 7.5,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_cone",
+   "path": "res://assets/models/nature/tree_cone.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_simple",
+   "path": "res://assets/models/nature/tree_simple.glb",
+   "category": "tree",
+   "scale": 7,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_plateau",
+   "path": "res://assets/models/nature/tree_plateau.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_oak_dark",
+   "path": "res://assets/models/nature/tree_oak_dark.glb",
+   "category": "tree",
+   "scale": 9,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_default_dark",
+   "path": "res://assets/models/nature/tree_default_dark.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.08,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_pineTallA",
+   "path": "res://assets/models/nature/tree_pineTallA.glb",
+   "category": "tree",
+   "scale": 9,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_pineTallB",
+   "path": "res://assets/models/nature/tree_pineTallB.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_pineRoundA",
+   "path": "res://assets/models/nature/tree_pineRoundA.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_pineRoundC",
+   "path": "res://assets/models/nature/tree_pineRoundC.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_pineDefaultA",
+   "path": "res://assets/models/nature/tree_pineDefaultA.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_pineSmallA",
+   "path": "res://assets/models/nature/tree_pineSmallA.glb",
+   "category": "tree",
+   "scale": 7,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_palmTall",
+   "path": "res://assets/models/nature/tree_palmTall.glb",
+   "category": "tree",
+   "scale": 9,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_palmBend",
+   "path": "res://assets/models/nature/tree_palmBend.glb",
+   "category": "tree",
+   "scale": 9,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_palmDetailedTall",
+   "path": "res://assets/models/nature/tree_palmDetailedTall.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_palmShort",
+   "path": "res://assets/models/nature/tree_palmShort.glb",
+   "category": "tree",
+   "scale": 8,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.tree_thin_dark",
+   "path": "res://assets/models/nature/tree_thin_dark.glb",
+   "category": "tree",
+   "scale": 6,
+   "collision": "cylinder",
+   "radius": 0.06,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.cactus_tall",
+   "path": "res://assets/models/nature/cactus_tall.glb",
+   "category": "plant",
+   "scale": 6,
+   "collision": "cylinder",
+   "radius": 0.1,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.cactus_short",
+   "path": "res://assets/models/nature/cactus_short.glb",
+   "category": "plant",
+   "scale": 5,
+   "collision": "cylinder",
+   "radius": 0.1,
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.plant_bush",
+   "path": "res://assets/models/nature/plant_bush.glb",
+   "category": "plant",
+   "scale": 5,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.plant_bushLarge",
+   "path": "res://assets/models/nature/plant_bushLarge.glb",
+   "category": "plant",
+   "scale": 6,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.plant_bushSmall",
+   "path": "res://assets/models/nature/plant_bushSmall.glb",
+   "category": "plant",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.plant_bushDetailed",
+   "path": "res://assets/models/nature/plant_bushDetailed.glb",
+   "category": "plant",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.plant_bushTriangle",
+   "path": "res://assets/models/nature/plant_bushTriangle.glb",
+   "category": "plant",
+   "scale": 5,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.plant_flatTall",
+   "path": "res://assets/models/nature/plant_flatTall.glb",
+   "category": "plant",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.flower_redA",
+   "path": "res://assets/models/nature/flower_redA.glb",
+   "category": "small",
+   "scale": 3,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.flower_yellowA",
+   "path": "res://assets/models/nature/flower_yellowA.glb",
+   "category": "small",
+   "scale": 3,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.flower_purpleA",
+   "path": "res://assets/models/nature/flower_purpleA.glb",
+   "category": "small",
+   "scale": 3,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.mushroom_redGroup",
+   "path": "res://assets/models/nature/mushroom_redGroup.glb",
+   "category": "small",
+   "scale": 3,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.grass",
+   "path": "res://assets/models/nature/grass.glb",
+   "category": "small",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.grass_large",
+   "path": "res://assets/models/nature/grass_large.glb",
+   "category": "small",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.lily_large",
+   "path": "res://assets/models/nature/lily_large.glb",
+   "category": "small",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.stump_round",
+   "path": "res://assets/models/nature/stump_round.glb",
+   "category": "small",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.log",
+   "path": "res://assets/models/nature/log.glb",
+   "category": "small",
+   "scale": 5,
+   "collision": "none",
+   "instanced": true,
+   "shadows": false
+  },
+  {
+   "id": "nature.rock_largeA",
+   "path": "res://assets/models/nature/rock_largeA.glb",
+   "category": "rock",
+   "scale": 6,
+   "collision": "box",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.rock_largeB",
+   "path": "res://assets/models/nature/rock_largeB.glb",
+   "category": "rock",
+   "scale": 6,
+   "collision": "box",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.rock_largeD",
+   "path": "res://assets/models/nature/rock_largeD.glb",
+   "category": "rock",
+   "scale": 6,
+   "collision": "box",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.rock_tallA",
+   "path": "res://assets/models/nature/rock_tallA.glb",
+   "category": "rock",
+   "scale": 6,
+   "collision": "box",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.rock_tallE",
+   "path": "res://assets/models/nature/rock_tallE.glb",
+   "category": "rock",
+   "scale": 6,
+   "collision": "box",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.rock_smallA",
+   "path": "res://assets/models/nature/rock_smallA.glb",
+   "category": "rock",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.rock_smallC",
+   "path": "res://assets/models/nature/rock_smallC.glb",
+   "category": "rock",
+   "scale": 4,
+   "collision": "none",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.stone_largeA",
+   "path": "res://assets/models/nature/stone_largeA.glb",
+   "category": "rock",
+   "scale": 6,
+   "collision": "box",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.stone_largeC",
+   "path": "res://assets/models/nature/stone_largeC.glb",
+   "category": "rock",
+   "scale": 6,
+   "collision": "box",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "nature.stone_tallB",
+   "path": "res://assets/models/nature/stone_tallB.glb",
+   "category": "rock",
+   "scale": 6,
+   "collision": "box",
+   "instanced": true,
+   "shadows": true
+  },
+  {
+   "id": "modern.building_a",
+   "path": "res://assets/models/modern/building-a.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_b",
+   "path": "res://assets/models/modern/building-b.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_c",
+   "path": "res://assets/models/modern/building-c.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_d",
+   "path": "res://assets/models/modern/building-d.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_e",
+   "path": "res://assets/models/modern/building-e.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_f",
+   "path": "res://assets/models/modern/building-f.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_g",
+   "path": "res://assets/models/modern/building-g.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_h",
+   "path": "res://assets/models/modern/building-h.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_i",
+   "path": "res://assets/models/modern/building-i.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_j",
+   "path": "res://assets/models/modern/building-j.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_k",
+   "path": "res://assets/models/modern/building-k.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_l",
+   "path": "res://assets/models/modern/building-l.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_m",
+   "path": "res://assets/models/modern/building-m.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.building_n",
+   "path": "res://assets/models/modern/building-n.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.skyscraper_a",
+   "path": "res://assets/models/modern/building-skyscraper-a.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.skyscraper_b",
+   "path": "res://assets/models/modern/building-skyscraper-b.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.skyscraper_c",
+   "path": "res://assets/models/modern/building-skyscraper-c.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.skyscraper_d",
+   "path": "res://assets/models/modern/building-skyscraper-d.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "modern.skyscraper_e",
+   "path": "res://assets/models/modern/building-skyscraper-e.glb",
+   "category": "building",
+   "scale": 12.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.fountain_round",
+   "path": "res://assets/models/town/fountain-round.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.stall",
+   "path": "res://assets/models/town/stall.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.stall_green",
+   "path": "res://assets/models/town/stall-green.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.stall_red",
+   "path": "res://assets/models/town/stall-red.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.lantern",
+   "path": "res://assets/models/town/lantern.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.cart",
+   "path": "res://assets/models/town/cart.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.windmill",
+   "path": "res://assets/models/town/windmill.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.watermill",
+   "path": "res://assets/models/town/watermill.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.tree",
+   "path": "res://assets/models/town/tree.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "town.tree_high_round",
+   "path": "res://assets/models/town/tree-high-round.glb",
+   "category": "prop",
+   "scale": 3.0,
+   "collision": "box"
+  },
+  {
+   "id": "props.crate_large",
+   "category": "physics",
+   "procedural": "crate",
+   "size": [
+    0.9,
+    0.9,
+    0.9
+   ],
+   "scale": 1.0,
+   "physics": {
+    "mass": 60,
+    "material": "wood",
+    "shape": "box",
+    "health": 120
+   }
+  },
+  {
+   "id": "props.crate_small",
+   "category": "physics",
+   "procedural": "crate",
+   "size": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "scale": 1.0,
+   "physics": {
+    "mass": 12,
+    "material": "wood",
+    "shape": "box",
+    "health": 40
+   }
+  },
+  {
+   "id": "props.cardboard_box",
+   "category": "physics",
+   "procedural": "crate",
+   "size": [
+    0.45,
+    0.35,
+    0.45
+   ],
+   "material": "cardboard",
+   "scale": 1.0,
+   "physics": {
+    "mass": 3,
+    "material": "cardboard",
+    "shape": "box",
+    "health": 10
+   }
+  },
+  {
+   "id": "props.barrel",
+   "category": "physics",
+   "procedural": "barrel",
+   "size": [
+    0.6,
+    0.9,
+    0.6
+   ],
+   "scale": 1.0,
+   "physics": {
+    "mass": 45,
+    "material": "metal",
+    "shape": "cylinder"
+   }
+  },
+  {
+   "id": "props.log",
+   "category": "physics",
+   "path": "res://assets/models/nature/log.glb",
+   "scale": 5.0,
+   "physics": {
+    "mass": 120,
+    "material": "wood",
+    "shape": "convex"
+   }
+  },
+  {
+   "id": "props.cart",
+   "category": "physics",
+   "path": "res://assets/models/town/cart.glb",
+   "scale": 3.0,
+   "physics": {
+    "mass": 220,
+    "material": "wood",
+    "shape": "convex"
+   }
+  },
+  {
+   "id": "props.can",
+   "category": "physics",
+   "procedural": "can",
+   "size": [
+    0.07,
+    0.12,
+    0.07
+   ],
+   "scale": 1.0,
+   "physics": {
+    "mass": 0.4,
+    "material": "metal",
+    "shape": "cylinder",
+    "pushaway": true
+   }
+  },
+  {
+   "id": "props.bottle",
+   "category": "physics",
+   "procedural": "bottle",
+   "size": [
+    0.08,
+    0.28,
+    0.08
+   ],
+   "scale": 1.0,
+   "physics": {
+    "mass": 0.6,
+    "material": "glass",
+    "shape": "cylinder",
+    "pushaway": true,
+    "health": 5
+   }
+  },
+  {
+   "id": "props.bucket",
+   "category": "physics",
+   "procedural": "barrel",
+   "size": [
+    0.3,
+    0.32,
+    0.3
+   ],
+   "scale": 1.0,
+   "physics": {
+    "mass": 2,
+    "material": "metal",
+    "shape": "cylinder",
+    "pushaway": true
+   }
+  },
+  {
+   "id": "gameplay.ladder",
+   "category": "gameplay",
+   "procedural": "ladder",
+   "size": [
+    0.6,
+    4.0,
+    0.1
+   ],
+   "scale": 1.0,
+   "gameplay": "ladder"
+  },
+  {
+   "id": "gameplay.platform",
+   "category": "gameplay",
+   "procedural": "platform",
+   "size": [
+    3.0,
+    0.3,
+    3.0
+   ],
+   "scale": 1.0,
+   "gameplay": "platform"
+  },
+  {
+   "id": "gameplay.training_dummy",
+   "category": "gameplay",
+   "procedural": "dummy",
+   "size": [
+    0.6,
+    1.8,
+    0.4
+   ],
+   "scale": 1.0,
+   "gameplay": "dummy"
+  },
+  {
+   "id": "gameplay.spawn_point",
+   "category": "gameplay",
+   "procedural": "spawn",
+   "size": [
+    0.8,
+    1.8,
+    0.8
+   ],
+   "scale": 1.0,
+   "gameplay": "spawn"
+  },
+  {
+   "id": "gameplay.spawner",
+   "category": "spawning",
+   "procedural": "spawner",
+   "size": [
+    0.5,
+    2.2,
+    0.5
+   ],
+   "scale": 1.0,
+   "collision": "none",
+   "gameplay": "spawner"
+  },
+  {
+   "id": "gameplay.unique_npc",
+   "category": "spawning",
+   "procedural": "unique",
+   "size": [
+    0.5,
+    2.2,
+    0.5
+   ],
+   "scale": 1.0,
+   "collision": "none",
+   "gameplay": "unique_npc"
+  },
+  {
+   "id": "gameplay.spawn_group",
+   "category": "spawning",
+   "procedural": "group",
+   "size": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "scale": 1.0,
+   "collision": "none",
+   "gameplay": "spawn_group"
+  },
+  {
+   "id": "gameplay.chest",
+   "category": "gameplay",
+   "procedural": "chest",
+   "size": [
+    1.0,
+    0.7,
+    0.6
+   ],
+   "scale": 1.0,
+   "collision": "box",
+   "gameplay": "chest"
+  }
+ ],
+ "palette": {
+  "leafsGreen": [
+   0.27,
+   0.5,
+   0.19
+  ],
+  "leafsDark": [
+   0.17,
+   0.36,
+   0.19
+  ],
+  "grass": [
+   0.36,
+   0.57,
+   0.21
+  ],
+  "woodBark": [
+   0.42,
+   0.3,
+   0.21
+  ],
+  "woodBarkDark": [
+   0.3,
+   0.22,
+   0.17
+  ],
+  "woodInner": [
+   0.72,
+   0.6,
+   0.44
+  ],
+  "dirt": [
+   0.48,
+   0.37,
+   0.27
+  ],
+  "stone": [
+   0.52,
+   0.53,
+   0.55
+  ]
+ }
+}
