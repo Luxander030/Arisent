@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dv6sgt7v0ahl7"
-path="res://.godot/imported/FlatTestArea.glb-29eadf57d85e7823c0dd2d32e76791b6.scn"
+path="res://.godot/imported/FlatTestArea.glb-f4744145b97d8f51aceaed05e598c1e2.scn"
 
 [deps]
 
-source_file="res://FlatTestArea.glb"
-dest_files=["res://.godot/imported/FlatTestArea.glb-29eadf57d85e7823c0dd2d32e76791b6.scn"]
+source_file="res://scenes/prototype/FlatTestArea.glb"
+dest_files=["res://.godot/imported/FlatTestArea.glb-f4744145b97d8f51aceaed05e598c1e2.scn"]
 
 [params]
 

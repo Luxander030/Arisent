@@ -174,7 +174,7 @@ func leave() -> void:
 		session = null
 	get_tree().auto_accept_quit = true
 	get_tree().physics_interpolation = false
-	get_tree().change_scene_to_file("res://MainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_menu/MainMenu.tscn")
 
 
 func _notification(what: int) -> void:

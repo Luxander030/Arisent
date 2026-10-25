@@ -1,5 +1,5 @@
 ## A skill tree read from a "skill-tree" JSON file (format version 1), e.g. the project's
-## res://Arisent-DEMO.json. Nodes have an id (what saves store), a name, a cost per rank,
+## res://assets/data/Arisent-DEMO.json. Nodes have an id (what saves store), a name, a cost per rank,
 ## a max rank and connections to the nodes they unlock. A node can be learned when it has
 ## no prerequisites (a root) or when every node connecting to it has a rank (a skill
 ## reached from two branches needs both).
@@ -10,7 +10,7 @@ extends RefCounted
 const FORMAT := "skill-tree"
 const VERSION := 1
 const SETTING := "lux/skills/tree_path"
-const DEFAULT_PATH := "res://Arisent-DEMO.json"
+const DEFAULT_PATH := "res://assets/data/Arisent-DEMO.json"
 const SHAPES := ["circle", "square", "diamond"]
 
 var name := ""

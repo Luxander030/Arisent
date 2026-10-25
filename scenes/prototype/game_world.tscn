@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://csfshcoujqyh2"]
 
-[ext_resource type="PackedScene" uid="uid://dv6sgt7v0ahl7" path="res://FlatTestArea.glb" id="1_hly68"]
-[ext_resource type="PackedScene" uid="uid://e831lfn753f6" path="res://player.tscn" id="2_bvgre"]
-[ext_resource type="Script" uid="uid://cpirt86uef2vy" path="res://smooth_follow_camera.gd" id="3_ea1x0"]
+[ext_resource type="PackedScene" uid="uid://dv6sgt7v0ahl7" path="res://scenes/prototype/FlatTestArea.glb" id="1_hly68"]
+[ext_resource type="PackedScene" uid="uid://e831lfn753f6" path="res://scenes/prototype/player.tscn" id="2_bvgre"]
+[ext_resource type="Script" uid="uid://cpirt86uef2vy" path="res://scenes/prototype/smooth_follow_camera.gd" id="3_ea1x0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bvgre"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

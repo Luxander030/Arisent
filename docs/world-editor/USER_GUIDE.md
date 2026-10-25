@@ -138,7 +138,7 @@ skill to learn its next rank: it costs the points shown in its tooltip, and it c
 learned once every skill leading to it has been learned — a skill where two branches meet
 needs both (Strike, at the bottom, is free to start with). Gold lines show your learned path; bright pulsing rims are what you can learn
 now; grey skills are still locked. Drag to move, wheel to zoom, Home to see the whole tree,
-K or Esc to close. The tree comes from `Arisent-DEMO.json` in the project folder; skills are
+K or Esc to close. The tree comes from `assets/data/Arisent-DEMO.json`; skills are
 saved by their id, so names and descriptions can change freely, but changing an id
 refunds the points spent on it.
 

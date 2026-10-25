@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://e831lfn753f6"]
 
-[ext_resource type="Script" uid="uid://ca1bkwtlwlfec" path="res://character_body_3d.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://ca1bkwtlwlfec" path="res://scenes/prototype/character_body_3d.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://caj8j4k4daisi" path="res://assets/models/main-character/demo.glb" id="2_onrkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8t684"]

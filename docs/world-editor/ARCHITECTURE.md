@@ -584,7 +584,7 @@ tracing, `/font`, `/netinfo`, `/haptics`, the per-cell pixel reveal, sprite bloc
 ## 16. Skill tree
 
 - **Data:** `world/skills/skill_tree.gd` (`SkillTree`) reads a "skill-tree" JSON (version 1)
-  from `lux/skills/tree_path` (default `res://Arisent-DEMO.json`). Nodes carry id, name,
+  from `lux/skills/tree_path` (default `res://assets/data/Arisent-DEMO.json`). Nodes carry id, name,
   description, x/y (canvas position, y up is negative), colour, shape (circle / square /
   diamond), icon (unused so far), cost per rank, maxRank, category and connections, where a
   connection means "this unlocks that". `parents` is derived. Bad entries are skipped and
@@ -603,7 +603,7 @@ tracing, `/font`, `/netinfo`, `/haptics`, the per-cell pixel reveal, sprite bloc
 - **Model:** `assets/models/main-character/demo.glb` (owner-provided fox mage, auto-rigged:
   57 unnamed bones `bone_0…bone_56`, A-pose, faces +Z, left side +X). `Player` scales it
   to `MODEL_HEIGHT` (1.8 m) with its feet at the origin. (The old `playerModelPlaceholder.glb`
-  is gone; the unused prototype `player.tscn` now shows this model too.)
+  is gone; the unused prototype `scenes/prototype/player.tscn` now shows this model too.)
 - **Clips (all CC0):** Quaternius's Universal Animation Library (Standard, 45 clips,
   `assets/animations/universal_animation_library/`) and, for ladders only, "Climb Ladder"
   and "Ladder_Idle" from the afk-rig animation library, cut out of it by
