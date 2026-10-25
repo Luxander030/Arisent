@@ -1,0 +1,43 @@
+{
+	"schema_version": 1,
+	"name": "New Map",
+	"size_km": 8,
+	"map_m": 8192.0,
+	"spacing": 2.0,
+	"generator_version": 1,
+	"gen_params": {
+		"name": "New Map",
+		"seed": "1",
+		"size_km": 8,
+		"land_water": 0.35,
+		"islands": 0.3,
+		"coast_rough": 0.5,
+		"mountains": 0.5,
+		"hilliness": 0.5,
+		"rivers": 0.5,
+		"lakes": 0.4,
+		"rifts": 0.25,
+		"blend_width": 0.5,
+		"vegetation": 0.6,
+		"city": true,
+		"city_size": 0.65,
+		"city_walls": true,
+		"city_modern": 0.4,
+		"biomes": {
+			"fjords": true,
+			"north_mountains": true,
+			"ocean": true,
+			"temperate_forest": true,
+			"grassland": true,
+			"tropical": true,
+			"desert_highlands": true,
+			"desert": true
+		},
+		"generator_version": 1
+	},
+	"stage_hashes": {
+		"layout": "5258a2d422cfadda"
+	},
+	"sea_level": 0.0,
+	"saved_at": "2026-10-21T21:48:34"
+}
