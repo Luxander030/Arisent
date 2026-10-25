@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://6e7tcquxmx0m"]
+
+[ext_resource type="Script" uid="uid://m4egxco5d5l0" path="res://main_menu.gd" id="1_i26rj"]
+
+[node name="MainMenu" type="Control" unique_id=1932344594]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i26rj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1120310427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23529412, 0.13725491, 0.65882355, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1299496445]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=167878391]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=193899136]
+layout_mode = 2
+text = "Lux's RPG"
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=513774674]
+layout_mode = 2
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=283955579]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=751336837]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

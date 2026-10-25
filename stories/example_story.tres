@@ -1,0 +1,429 @@
+[gd_resource type="Resource" script_class="StoryGraph" format=3 uid="uid://r2ryucvsmciy"]
+
+[ext_resource type="Script" uid="uid://dy4eky56d6i62" path="res://addons/story_graph/core/story_cell.gd" id="1_3tvfj"]
+[ext_resource type="Script" uid="uid://c31a3vne6fwb6" path="res://addons/story_graph/core/story_action.gd" id="2_rn2y4"]
+[ext_resource type="Script" uid="uid://oxc64gs7lvv" path="res://addons/story_graph/core/story_output.gd" id="3_w000f"]
+[ext_resource type="Script" uid="uid://c8jy81gxmcnvt" path="res://addons/story_graph/core/story_condition.gd" id="4_hblut"]
+[ext_resource type="Script" uid="uid://bgcwrevxtjcnj" path="res://addons/story_graph/core/story_frame.gd" id="5_43vdf"]
+[ext_resource type="Script" uid="uid://dvjohu1yr7edt" path="res://addons/story_graph/core/story_graph.gd" id="6_lq0ka"]
+
+[sub_resource type="Resource" id="Resource_wmjo8"]
+script = ExtResource("3_w000f")
+target_id = "greet"
+
+[sub_resource type="Resource" id="Resource_gkg17"]
+script = ExtResource("1_3tvfj")
+id = "start"
+title = "Arrive at the tavern"
+type = 0
+text = "The player walks into the Rusty Tankard."
+position = Vector2(-540, 200)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_wmjo8")])
+repeatable = false
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_5xxme"]
+script = ExtResource("2_rn2y4")
+target = "met_innkeeper"
+
+[sub_resource type="Resource" id="Resource_qxcct"]
+script = ExtResource("3_w000f")
+target_id = "main_menu"
+
+[sub_resource type="Resource" id="Resource_51foi"]
+script = ExtResource("1_3tvfj")
+id = "greet"
+title = "Greeting"
+speaker = "Innkeeper"
+text = "Welcome, traveller! You look like someone who can handle a bit of trouble."
+position = Vector2(320, 160)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_qxcct")])
+actions = Array[ExtResource("2_rn2y4")]([SubResource("Resource_5xxme")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_b8e8f"]
+script = ExtResource("3_w000f")
+label = "I'm looking for work."
+target_id = "job_offer"
+
+[sub_resource type="Resource" id="Resource_7ilvp"]
+script = ExtResource("4_hblut")
+kind = 7
+target = "gold"
+op = ">="
+value = "10"
+
+[sub_resource type="Resource" id="Resource_8g314"]
+script = ExtResource("3_w000f")
+label = "A drink, please. (10 gold)"
+target_id = "buy_drink"
+condition = SubResource("Resource_7ilvp")
+
+[sub_resource type="Resource" id="Resource_ltqe0"]
+script = ExtResource("4_hblut")
+kind = 3
+target = "job_offer"
+
+[sub_resource type="Resource" id="Resource_fywlu"]
+script = ExtResource("3_w000f")
+label = "What's down in the cellar?"
+target_id = "cellar_rumor"
+condition = SubResource("Resource_ltqe0")
+
+[sub_resource type="Resource" id="Resource_tgqt6"]
+script = ExtResource("3_w000f")
+label = "Head down to the cellar."
+target_id = "cellar"
+
+[sub_resource type="Resource" id="Resource_muvp5"]
+script = ExtResource("3_w000f")
+label = "Leave the tavern."
+target_id = "leave"
+
+[sub_resource type="Resource" id="Resource_crva1"]
+script = ExtResource("1_3tvfj")
+id = "main_menu"
+title = "What now?"
+type = 2
+text = "You have {gold} gold. What do you say?"
+position = Vector2(680, 140)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_b8e8f"), SubResource("Resource_8g314"), SubResource("Resource_fywlu"), SubResource("Resource_tgqt6"), SubResource("Resource_muvp5")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_xel1u"]
+script = ExtResource("3_w000f")
+target_id = "take_job"
+
+[sub_resource type="Resource" id="Resource_0scam"]
+script = ExtResource("1_3tvfj")
+id = "job_offer"
+title = "Job offer"
+speaker = "Innkeeper"
+text = "Rats in the cellar. Big ones. Clear them out and I'll pay you {reward} gold."
+position = Vector2(1080, -120)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_xel1u")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_o4pt1"]
+script = ExtResource("4_hblut")
+kind = 4
+target = "accept_job"
+
+[sub_resource type="Resource" id="Resource_3pgnp"]
+script = ExtResource("3_w000f")
+label = "Deal."
+target_id = "accept_job"
+condition = SubResource("Resource_o4pt1")
+
+[sub_resource type="Resource" id="Resource_0cj63"]
+script = ExtResource("3_w000f")
+label = "Not right now."
+target_id = "main_menu"
+
+[sub_resource type="Resource" id="Resource_b5i55"]
+script = ExtResource("1_3tvfj")
+id = "take_job"
+title = "Take the job?"
+type = 2
+text = "Take the job?"
+position = Vector2(1420, -120)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_3pgnp"), SubResource("Resource_0cj63")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_ufn5j"]
+script = ExtResource("2_rn2y4")
+target = "job_accepted"
+
+[sub_resource type="Resource" id="Resource_svab5"]
+script = ExtResource("2_rn2y4")
+kind = 3
+target = "reputation"
+value = "1"
+
+[sub_resource type="Resource" id="Resource_bl2vi"]
+script = ExtResource("2_rn2y4")
+kind = 6
+target = "quest_started"
+value = "cellar_rats"
+
+[sub_resource type="Resource" id="Resource_bibd0"]
+script = ExtResource("3_w000f")
+target_id = "give_key"
+
+[sub_resource type="Resource" id="Resource_jkouf"]
+script = ExtResource("1_3tvfj")
+id = "accept_job"
+title = "Accept the job"
+type = 4
+position = Vector2(1760, -200)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_bibd0")])
+actions = Array[ExtResource("2_rn2y4")]([SubResource("Resource_ufn5j"), SubResource("Resource_svab5"), SubResource("Resource_bl2vi")])
+repeatable = false
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_mev8e"]
+script = ExtResource("2_rn2y4")
+target = "has_key"
+
+[sub_resource type="Resource" id="Resource_un61c"]
+script = ExtResource("3_w000f")
+target_id = "main_menu"
+
+[sub_resource type="Resource" id="Resource_vvc57"]
+script = ExtResource("1_3tvfj")
+id = "give_key"
+title = "Cellar key"
+speaker = "Innkeeper"
+text = "Here's the key. Mind the big one."
+position = Vector2(2080, -200)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_un61c")])
+actions = Array[ExtResource("2_rn2y4")]([SubResource("Resource_mev8e")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_lkqb1"]
+script = ExtResource("2_rn2y4")
+kind = 3
+target = "gold"
+value = "-10"
+
+[sub_resource type="Resource" id="Resource_pbl7i"]
+script = ExtResource("2_rn2y4")
+kind = 3
+target = "reputation"
+value = "1"
+
+[sub_resource type="Resource" id="Resource_pb20j"]
+script = ExtResource("3_w000f")
+target_id = "drink_line"
+
+[sub_resource type="Resource" id="Resource_gcx5y"]
+script = ExtResource("1_3tvfj")
+id = "buy_drink"
+title = "Pay for a drink"
+type = 4
+position = Vector2(1080, 220)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_pb20j")])
+actions = Array[ExtResource("2_rn2y4")]([SubResource("Resource_lkqb1"), SubResource("Resource_pbl7i")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_30ljp"]
+script = ExtResource("3_w000f")
+target_id = "main_menu"
+
+[sub_resource type="Resource" id="Resource_dusvr"]
+script = ExtResource("1_3tvfj")
+id = "drink_line"
+title = "Drink"
+speaker = "Innkeeper"
+text = "Here you go. Next one's on the house… maybe."
+position = Vector2(1400, 220)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_30ljp")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_fes0s"]
+script = ExtResource("3_w000f")
+target_id = "main_menu"
+
+[sub_resource type="Resource" id="Resource_ti2xe"]
+script = ExtResource("1_3tvfj")
+id = "cellar_rumor"
+title = "Rumour"
+speaker = "Old drunk"
+text = "They say something bigger than rats lives down there."
+notes = "One-time: once heard, the option is greyed out."
+position = Vector2(1080, 480)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_fes0s")])
+repeatable = false
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_sya10"]
+script = ExtResource("1_3tvfj")
+id = "leave"
+title = "Walk away"
+type = 5
+text = "You walk out into the night."
+position = Vector2(1080, 700)
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_ejpe8"]
+script = ExtResource("3_w000f")
+target_id = "fight"
+
+[sub_resource type="Resource" id="Resource_5a1df"]
+script = ExtResource("4_hblut")
+kind = 3
+target = "accept_job"
+
+[sub_resource type="Resource" id="Resource_07nxl"]
+script = ExtResource("4_hblut")
+kind = 5
+target = "has_key"
+
+[sub_resource type="Resource" id="Resource_oduhd"]
+script = ExtResource("4_hblut")
+kind = 7
+target = "reputation"
+op = ">="
+value = "3"
+
+[sub_resource type="Resource" id="Resource_y1ko3"]
+script = ExtResource("4_hblut")
+kind = 1
+children = Array[ExtResource("4_hblut")]([SubResource("Resource_07nxl"), SubResource("Resource_oduhd")])
+
+[sub_resource type="Resource" id="Resource_qwdbo"]
+script = ExtResource("4_hblut")
+children = Array[ExtResource("4_hblut")]([SubResource("Resource_5a1df"), SubResource("Resource_y1ko3")])
+
+[sub_resource type="Resource" id="Resource_r7cig"]
+script = ExtResource("1_3tvfj")
+id = "cellar"
+title = "The cellar"
+text = "The cellar is dark and smells of old wine. Something big moves behind the barrels."
+notes = "Needs the job AND (the key OR a good reputation)."
+position = Vector2(1080, 1000)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_ejpe8")])
+prerequisites = SubResource("Resource_qwdbo")
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_ta7ax"]
+script = ExtResource("4_hblut")
+kind = 8
+expression = "reputation >= 2 or flag(\"brave\")"
+
+[sub_resource type="Resource" id="Resource_bwri0"]
+script = ExtResource("3_w000f")
+label = "Strong"
+target_id = "win"
+condition = SubResource("Resource_ta7ax")
+
+[sub_resource type="Resource" id="Resource_31wsa"]
+script = ExtResource("3_w000f")
+label = "Else"
+target_id = "lose"
+
+[sub_resource type="Resource" id="Resource_srvbt"]
+script = ExtResource("1_3tvfj")
+id = "fight"
+title = "Strong enough?"
+type = 3
+position = Vector2(1420, 1000)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_bwri0"), SubResource("Resource_31wsa")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_3acc5"]
+script = ExtResource("2_rn2y4")
+kind = 3
+target = "gold"
+value = "20"
+
+[sub_resource type="Resource" id="Resource_aot0f"]
+script = ExtResource("3_w000f")
+target_id = "hero_ending"
+
+[sub_resource type="Resource" id="Resource_k8e6t"]
+script = ExtResource("1_3tvfj")
+id = "win"
+title = "Victory"
+text = "You drive the rats out. The innkeeper pays you {reward} gold."
+position = Vector2(1760, 920)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_aot0f")])
+actions = Array[ExtResource("2_rn2y4")]([SubResource("Resource_3acc5")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_qpley"]
+script = ExtResource("3_w000f")
+target_id = "flee_ending"
+
+[sub_resource type="Resource" id="Resource_swo57"]
+script = ExtResource("1_3tvfj")
+id = "lose"
+title = "Retreat"
+text = "The giant rat is too much. You scramble back up the stairs."
+position = Vector2(1760, 1140)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_qpley")])
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_bjx63"]
+script = ExtResource("1_3tvfj")
+id = "hero_ending"
+title = "Rat slayer"
+type = 5
+text = "The village toasts the rat slayer."
+position = Vector2(2100, 920)
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_all17"]
+script = ExtResource("1_3tvfj")
+id = "flee_ending"
+title = "Cellar coward"
+type = 5
+text = "Nobody mentions the cellar again."
+position = Vector2(2100, 1140)
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_ili7b"]
+script = ExtResource("3_w000f")
+target_id = "to_be_continued"
+
+[sub_resource type="Resource" id="Resource_06x02"]
+script = ExtResource("4_hblut")
+kind = 3
+target = "hero_ending"
+
+[sub_resource type="Resource" id="Resource_allsu"]
+script = ExtResource("4_hblut")
+children = Array[ExtResource("4_hblut")]([SubResource("Resource_06x02")])
+
+[sub_resource type="Resource" id="Resource_ti3da"]
+script = ExtResource("1_3tvfj")
+id = "night_ambush"
+title = "Night ambush (event)"
+speaker = "Stranger"
+text = "So you're the one who killed our pet. Come with us."
+notes = "Triggerable event: nothing leads here. The game triggers it once the hero ending happened."
+position = Vector2(2460, 920)
+outputs = Array[ExtResource("3_w000f")]([SubResource("Resource_ili7b")])
+prerequisites = SubResource("Resource_allsu")
+repeatable = false
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_oywbk"]
+script = ExtResource("1_3tvfj")
+id = "to_be_continued"
+title = "To be continued"
+type = 5
+text = "To be continued…"
+position = Vector2(2800, 920)
+tags = PackedStringArray()
+
+[sub_resource type="Resource" id="Resource_qcupt"]
+script = ExtResource("5_43vdf")
+id = "group_1"
+title = "Tavern"
+position = Vector2(280, -282)
+size = Vector2(2360, 1129.0001)
+color = Color(0.55, 0.4, 0.2, 0.5)
+cell_ids = PackedStringArray("greet", "main_menu", "job_offer", "take_job", "accept_job", "give_key", "buy_drink", "drink_line", "cellar_rumor")
+
+[sub_resource type="Resource" id="Resource_qbkuf"]
+script = ExtResource("5_43vdf")
+id = "group_2"
+title = "Cellar"
+position = Vector2(1040, 838)
+size = Vector2(1280.0002, 620)
+color = Color(0.3, 0.3, 0.55, 0.5)
+cell_ids = PackedStringArray("cellar", "fight", "win", "lose")
+
+[resource]
+script = ExtResource("6_lq0ka")
+title = "The Tavern Job"
+description = "Example story for the Story Graph plugin: a short quest in a village tavern."
+cells = Array[ExtResource("1_3tvfj")]([SubResource("Resource_gkg17"), SubResource("Resource_51foi"), SubResource("Resource_crva1"), SubResource("Resource_0scam"), SubResource("Resource_b5i55"), SubResource("Resource_jkouf"), SubResource("Resource_vvc57"), SubResource("Resource_gcx5y"), SubResource("Resource_dusvr"), SubResource("Resource_ti2xe"), SubResource("Resource_sya10"), SubResource("Resource_r7cig"), SubResource("Resource_srvbt"), SubResource("Resource_k8e6t"), SubResource("Resource_swo57"), SubResource("Resource_bjx63"), SubResource("Resource_all17"), SubResource("Resource_ti3da"), SubResource("Resource_oywbk")])
+frames = Array[ExtResource("5_43vdf")]([SubResource("Resource_qcupt"), SubResource("Resource_qbkuf")])
+variables = {
+"gold": 15,
+"reputation": 0,
+"reward": 20
+}
+flags = PackedStringArray("brave")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://e831lfn753f6"]
+
+[ext_resource type="Script" uid="uid://ca1bkwtlwlfec" path="res://character_body_3d.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://caj8j4k4daisi" path="res://assets/models/main-character/demo.glb" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8t684"]
+height = 3.1958008
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1212322773]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=801316222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23901367, 0)
+shape = SubResource("CapsuleShape3D_8t684")
+
+[node name="Model" parent="." unique_id=1496494343 instance=ExtResource("2_onrkg")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.13, 0)

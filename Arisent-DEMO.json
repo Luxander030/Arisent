@@ -1,0 +1,1007 @@
+{
+  "format": "skill-tree",
+  "version": 1,
+  "name": "Arisent-DEMO",
+  "nodes": [
+    {
+      "id": "ME-003-1",
+      "name": "Parry",
+      "description": "Deflect an enemy's attack to stager them and protect yourself.",
+      "x": -100,
+      "y": -200,
+      "icon": "",
+      "color": "#4a7bd0",
+      "shape": "circle",
+      "cost": 1,
+      "maxRank": 1,
+      "category": "melee",
+      "connections": [
+        "ME-004-1"
+      ]
+    },
+    {
+      "id": "ME-002",
+      "name": "Charged Strike",
+      "description": "Hold down [LMB/Square/X] to charge an attack, and then release a much stronger version of your normal strike.\n\n+10% DMG per LV",
+      "x": 0,
+      "y": -100,
+      "icon": "",
+      "color": "#4a7bd0",
+      "shape": "circle",
+      "cost": 1,
+      "maxRank": 10,
+      "category": "melee",
+      "connections": [
+        "ME-003-2",
+        "ME-003-1"
+      ]
+    },
+    {
+      "id": "ME-003-2",
+      "name": "Spin Attack",
+      "description": "Spin your blade in a circle to damage any enemy around you.\n\n+10% DMG per LV",
+      "x": 100,
+      "y": -200,
+      "icon": "",
+      "color": "#4a7bd0",
+      "shape": "circle",
+      "cost": 1,
+      "maxRank": 1,
+      "category": "melee",
+      "connections": [
+        "ME-004-2"
+      ]
+    },
+    {
+      "id": "ME-004-2",
+      "name": "Charged Spin Attack",
+      "description": "Charge your spin attack for amore punishing spin.\n\n+10% DMG per LV",
+      "x": 100,
+      "y": -300,
+      "icon": "",
+      "color": "#4a7bd0",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 1,
+      "category": "melee",
+      "connections": [
+        "M-001"
+      ]
+    },
+    {
+      "id": "ME-004-1",
+      "name": "Unbounded Counter",
+      "description": "Hold down your parry button to counter any attack. Gain a higher defense for a higher risk in execution.",
+      "x": -100,
+      "y": -300,
+      "icon": "",
+      "color": "#4a7bd0",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 1,
+      "category": "melee",
+      "connections": [
+        "M-001"
+      ]
+    },
+    {
+      "id": "ME-001",
+      "name": "Strike",
+      "description": "A normal strike. Basic. Effective.\n\n+5% DMG per LV",
+      "x": 0,
+      "y": 0,
+      "icon": "",
+      "color": "#4a7bd0",
+      "shape": "square",
+      "cost": 1,
+      "maxRank": 5,
+      "category": "melee",
+      "connections": [
+        "ME-002"
+      ]
+    },
+    {
+      "id": "F-002",
+      "name": "Fireball",
+      "description": "The most basic, yet best spell for beginners. Hurl a ball of flame and make it explode.\n\n+5% DMG per LV",
+      "x": -300,
+      "y": -500,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 10,
+      "category": "fire",
+      "connections": [
+        "F-003"
+      ]
+    },
+    {
+      "id": "F-005-1",
+      "name": "Beam of Fire",
+      "description": "Unleash a devastating beam of pure fire, incinerating everything in its path.\n\n+10% DMG per LV",
+      "x": -600,
+      "y": -340,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 4,
+      "maxRank": 10,
+      "category": "fire",
+      "connections": [
+        "F-006-1"
+      ]
+    },
+    {
+      "id": "F-006-1",
+      "name": "Hellraise",
+      "description": "Erupt 5 pillars of fire on the nearest five enemies, incinerating them to ash.",
+      "x": -700,
+      "y": -300,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 5,
+      "maxRank": 10,
+      "category": "fire",
+      "connections": [
+        "F-007-U"
+      ]
+    },
+    {
+      "id": "M-001",
+      "name": "Magical Reserves",
+      "description": "Gain the ability to store Mana in yourself to use to manipulate the world.\n\n+10% Max Mana per LV\n+10% Mana Regen per LV",
+      "x": 0,
+      "y": -400,
+      "icon": "",
+      "color": "#3c23a8",
+      "shape": "square",
+      "cost": 3,
+      "maxRank": 5,
+      "category": "magic",
+      "connections": [
+        "W-001",
+        "N-001",
+        "M-002",
+        "O-001",
+        "F-001"
+      ]
+    },
+    {
+      "id": "F-005-2",
+      "name": "Fire Skin",
+      "description": "Cover your skin in fire, nullifying all damage for ten seconds while also igniting enemies that hit you.\n\n+0.25s per LV",
+      "x": -600,
+      "y": -660,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 4,
+      "maxRank": 10,
+      "category": "fire",
+      "connections": [
+        "F-006-2"
+      ]
+    },
+    {
+      "id": "F-006-2",
+      "name": "Flame of Life",
+      "description": "Create a flame that fully envelops you, fully healing you and damaging any enemies nearby.\n\n+5% Healed per LV\n+5% DMG per LV",
+      "x": -700,
+      "y": -700,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 5,
+      "maxRank": 10,
+      "category": "fire",
+      "connections": [
+        "F-007-U"
+      ]
+    },
+    {
+      "id": "F-003",
+      "name": "Flame's Will",
+      "description": "All Fire type spells deal 25% increased damage and cost 25% less to cast.",
+      "x": -400,
+      "y": -500,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 1,
+      "category": "fire",
+      "connections": [
+        "F-004-1",
+        "F-004-2"
+      ]
+    },
+    {
+      "id": "F-004-2",
+      "name": "Healing Flame",
+      "description": "Create a harmless flame that cauterizes wounds.\n\n+10% Healed per LV",
+      "x": -500,
+      "y": -600,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "fire",
+      "connections": [
+        "F-005-2"
+      ]
+    },
+    {
+      "id": "F-004-1",
+      "name": "Flaming Serpent",
+      "description": "Fire a flaming serpent at a target, enveloping them in flame and setting them alight.\n\n+10% DMG per LV",
+      "x": -500,
+      "y": -400,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "fire",
+      "connections": [
+        "F-005-1"
+      ]
+    },
+    {
+      "id": "F-007-U",
+      "name": "Meteor Storm",
+      "description": "The Flame Blessing's Ultimate. Rain down meteors on a location of your choice.\n\n+10% DMG per LV\n+10% Radius per LV",
+      "x": -700,
+      "y": -500,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "diamond",
+      "cost": 5,
+      "maxRank": 5,
+      "category": "fire",
+      "connections": []
+    },
+    {
+      "id": "O-005-1",
+      "name": "Whirlpool",
+      "description": "Open a whirlpool beneath your enemies, dragging them to its centre and drowning them.\n\n+10% DMG per LV",
+      "x": -600,
+      "y": -840,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 4,
+      "maxRank": 10,
+      "category": "water",
+      "connections": [
+        "O-006-1"
+      ]
+    },
+    {
+      "id": "O-006-1",
+      "name": "Crashing Wave",
+      "description": "Summon a towering wave that crashes down in front of you, knocking down and sweeping away every enemy it hits.\n\n+10% DMG per LV",
+      "x": -700,
+      "y": -800,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 5,
+      "maxRank": 10,
+      "category": "water",
+      "connections": [
+        "O-007-U"
+      ]
+    },
+    {
+      "id": "O-005-2",
+      "name": "Water Shield",
+      "description": "Surround yourself in a sphere of water, nullifying all damage for ten seconds while also slowing enemies that hit you.\n\n+0.25s per LV",
+      "x": -600,
+      "y": -1160,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 4,
+      "maxRank": 10,
+      "category": "water",
+      "connections": [
+        "O-006-2"
+      ]
+    },
+    {
+      "id": "O-006-2",
+      "name": "Spring of Life",
+      "description": "Raise a spring beneath your feet, fully healing you and pushing any enemies nearby away.\n\n+5% Healed per LV\n+5% DMG per LV",
+      "x": -700,
+      "y": -1200,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 5,
+      "maxRank": 10,
+      "category": "water",
+      "connections": [
+        "O-007-U"
+      ]
+    },
+    {
+      "id": "O-004-2",
+      "name": "Soothing Rain",
+      "description": "Call down a gentle rain that heals you while you stand in it.\n\n+10% Healed per LV",
+      "x": -500,
+      "y": -1100,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "water",
+      "connections": [
+        "O-005-2"
+      ]
+    },
+    {
+      "id": "O-002",
+      "name": "Torrent",
+      "description": "Unleash a torrent of water, soaking your enemy thoroughly.\n\n+10% DMG per LV",
+      "x": -300,
+      "y": -1000,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 10,
+      "category": "water",
+      "connections": [
+        "O-003"
+      ]
+    },
+    {
+      "id": "N-002",
+      "name": "Spike Launch",
+      "description": "Launch a volley of extremely sharp spikes.\n\n+10% DMG per LV",
+      "x": 300,
+      "y": -1000,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 10,
+      "category": "nature",
+      "connections": [
+        "N-003"
+      ]
+    },
+    {
+      "id": "N-000",
+      "name": "Growth",
+      "description": "Nature type spells cost 5% less to cast and deal 5% more damage\n\n+5% DMG per LV\n+5% Cast Reduction per LV",
+      "x": 300,
+      "y": -900,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 5,
+      "category": "nature",
+      "connections": []
+    },
+    {
+      "id": "O-003",
+      "name": "Ocean's Will",
+      "description": "All Water type spells deal 25% increased damage and cost 25% less to cast.",
+      "x": -400,
+      "y": -1000,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 1,
+      "category": "water",
+      "connections": [
+        "O-004-1",
+        "O-004-2"
+      ]
+    },
+    {
+      "id": "O-000",
+      "name": "Liquidation",
+      "description": "Water type spells cost 5% less to cast and deal 5% more damage\n\n+5% DMG per LV\n+5% Cast Reduction per LV",
+      "x": -300,
+      "y": -900,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 5,
+      "category": "water",
+      "connections": []
+    },
+    {
+      "id": "F-000",
+      "name": "Efficiency",
+      "description": "Fire type spells cost 5% less to cast and deal 5% more damage\n\n+5% DMG per LV\n+5% Cast Reduction per LV",
+      "x": -300,
+      "y": -400,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 5,
+      "category": "fire",
+      "connections": []
+    },
+    {
+      "id": "F-001",
+      "name": "Flame's Blessing",
+      "description": "Gain the ability to cast fire type spells. All fire type spells apply a burning status effect to them.",
+      "x": -200,
+      "y": -500,
+      "icon": "",
+      "color": "#ff6600",
+      "shape": "square",
+      "cost": 1,
+      "maxRank": 1,
+      "category": "fire",
+      "connections": [
+        "F-002",
+        "F-000"
+      ]
+    },
+    {
+      "id": "O-001",
+      "name": "Ocean's Blessing",
+      "description": "Gain the ability to cast water type spells. All water type spells apply a soaked status effect to them, slowing enemies.",
+      "x": -200,
+      "y": -1000,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "square",
+      "cost": 1,
+      "maxRank": 1,
+      "category": "water",
+      "connections": [
+        "O-000",
+        "O-002"
+      ]
+    },
+    {
+      "id": "N-001",
+      "name": "Nature's Blessing",
+      "description": "Gain the ability to cast nature type spells. All nature type spells apply a poisoned status effect to them.",
+      "x": 200,
+      "y": -1000,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "square",
+      "cost": 1,
+      "maxRank": 1,
+      "category": "nature",
+      "connections": [
+        "N-000",
+        "N-002"
+      ]
+    },
+    {
+      "id": "W-001",
+      "name": "Wind's Blessing",
+      "description": "Gain the ability to cast wind type spells. All wind type spells knock back the enemies they hit.",
+      "x": 200,
+      "y": -500,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "square",
+      "cost": 1,
+      "maxRank": 1,
+      "category": "wind",
+      "connections": [
+        "W-000",
+        "W-002"
+      ]
+    },
+    {
+      "id": "O-004-1",
+      "name": "Tidal Lance",
+      "description": "Hurl a spear of compressed water that pierces through every enemy in a line.\n\n+10% DMG per LV",
+      "x": -500,
+      "y": -900,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "water",
+      "connections": [
+        "O-005-1"
+      ]
+    },
+    {
+      "id": "N-004-2",
+      "name": "Regrowth",
+      "description": "Let new life grow over your wounds, healing you over time.\n\n+10% Healed per LV",
+      "x": 500,
+      "y": -1100,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "nature",
+      "connections": [
+        "N-005-2"
+      ]
+    },
+    {
+      "id": "O-007-U",
+      "name": "Tsunami",
+      "description": "The Ocean Blessing's Ultimate. Bring a colossal tsunami crashing down on a location of your choice.\n\n+10% DMG per LV\n+10% Radius per LV",
+      "x": -700,
+      "y": -1000,
+      "icon": "",
+      "color": "#0008ff",
+      "shape": "diamond",
+      "cost": 5,
+      "maxRank": 5,
+      "category": "water",
+      "connections": []
+    },
+    {
+      "id": "N-005-2",
+      "name": "Barkskin",
+      "description": "Harden your skin into living bark, nullifying all damage for ten seconds while also rooting enemies that hit you.\n\n+0.25s per LV",
+      "x": 600,
+      "y": -1160,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 4,
+      "maxRank": 10,
+      "category": "nature",
+      "connections": [
+        "N-006-2"
+      ]
+    },
+    {
+      "id": "N-006-2",
+      "name": "Heart of the Forest",
+      "description": "Become one with the forest, fully healing you and draining the life of any enemies nearby.\n\n+5% Healed per LV\n+5% DMG per LV",
+      "x": 700,
+      "y": -1200,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 5,
+      "maxRank": 10,
+      "category": "nature",
+      "connections": [
+        "N-007-U"
+      ]
+    },
+    {
+      "id": "N-007-U",
+      "name": "World Tree",
+      "description": "The Nature Blessing's Ultimate. Raise an ancient tree on a location of your choice, crushing enemies with its roots.\n\n+10% DMG per LV\n+10% Radius per LV",
+      "x": 700,
+      "y": -1000,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "diamond",
+      "cost": 5,
+      "maxRank": 5,
+      "category": "nature",
+      "connections": []
+    },
+    {
+      "id": "N-006-1",
+      "name": "Wrath of the Wild",
+      "description": "Burst the ground beneath the nearest five enemies with giant thorned roots, impaling them.\n\n+10% DMG per LV",
+      "x": 700,
+      "y": -800,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 5,
+      "maxRank": 10,
+      "category": "nature",
+      "connections": [
+        "N-007-U"
+      ]
+    },
+    {
+      "id": "N-005-1",
+      "name": "Bramble Field",
+      "description": "Raise a field of brambles that roots and shreds every enemy standing in it.\n\n+10% DMG per LV",
+      "x": 600,
+      "y": -840,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 4,
+      "maxRank": 10,
+      "category": "nature",
+      "connections": [
+        "N-006-1"
+      ]
+    },
+    {
+      "id": "W-000",
+      "name": "Cleanse",
+      "description": "Wind type spells cost 5% less to cast and deal 5% more damage\n\n+5% DMG per LV\n+5% Cast Reduction per LV",
+      "x": 300,
+      "y": -400,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 5,
+      "category": "wind",
+      "connections": []
+    },
+    {
+      "id": "W-002",
+      "name": "Sharpened Wind",
+      "description": "Release a blade of wind, shredding through your enemy.\n\n+10% DMG per LV",
+      "x": 300,
+      "y": -500,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 10,
+      "category": "wind",
+      "connections": [
+        "W-003"
+      ]
+    },
+    {
+      "id": "N-003",
+      "name": "Nature's Will",
+      "description": "All Nature type spells deal 25% increased damage and cost 25% less to cast.",
+      "x": 400,
+      "y": -1000,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 1,
+      "category": "nature",
+      "connections": [
+        "N-004-2",
+        "N-004-1"
+      ]
+    },
+    {
+      "id": "W-003",
+      "name": "Wind's Will",
+      "description": "All Wind type spells deal 25% increased damage and cost 25% less to cast.",
+      "x": 400,
+      "y": -500,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 1,
+      "category": "wind",
+      "connections": [
+        "W-004-2",
+        "W-004-1"
+      ]
+    },
+    {
+      "id": "N-004-1",
+      "name": "Thorn Whip",
+      "description": "Lash a thorned vine at a target, ensnaring them in place and making them bleed.\n\n+10% DMG per LV",
+      "x": 500,
+      "y": -900,
+      "icon": "",
+      "color": "#49d058",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "nature",
+      "connections": [
+        "N-005-1"
+      ]
+    },
+    {
+      "id": "W-004-1",
+      "name": "Gust",
+      "description": "Blast a gust of wind at a target, throwing them back and leaving them off balance.\n\n+10% DMG per LV",
+      "x": 500,
+      "y": -400,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "wind",
+      "connections": [
+        "W-005-1"
+      ]
+    },
+    {
+      "id": "W-004-2",
+      "name": "Tailwind",
+      "description": "Let the wind carry you, quickening your steps and your strikes.\n\n+5% Speed per LV",
+      "x": 500,
+      "y": -600,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "wind",
+      "connections": [
+        "W-005-2"
+      ]
+    },
+    {
+      "id": "W-005-1",
+      "name": "Thousand Cuts",
+      "description": "Surround a target with a storm of tiny blades that slice them again and again.\n\n+10% DMG per LV",
+      "x": 600,
+      "y": -340,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 4,
+      "maxRank": 10,
+      "category": "wind",
+      "connections": [
+        "W-006-1"
+      ]
+    },
+    {
+      "id": "W-005-2",
+      "name": "Wind Barrier",
+      "description": "Wrap yourself in a howling wall of wind, deflecting all attacks for ten seconds while also knocking back enemies that come close.\n\n+0.25s per LV",
+      "x": 600,
+      "y": -660,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 4,
+      "maxRank": 10,
+      "category": "wind",
+      "connections": [
+        "W-006-2"
+      ]
+    },
+    {
+      "id": "W-006-2",
+      "name": "Breath of Life",
+      "description": "Draw in a breath of pure air, fully healing you and blowing any enemies nearby away.\n\n+5% Healed per LV\n+5% DMG per LV",
+      "x": 700,
+      "y": -700,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 5,
+      "maxRank": 10,
+      "category": "wind",
+      "connections": [
+        "W-007-U"
+      ]
+    },
+    {
+      "id": "W-006-1",
+      "name": "Tornado",
+      "description": "Summon a tornado that tears across the battlefield, lifting the nearest five enemies and hurling them away.\n\n+10% DMG per LV",
+      "x": 700,
+      "y": -300,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "circle",
+      "cost": 5,
+      "maxRank": 10,
+      "category": "wind",
+      "connections": [
+        "W-007-U"
+      ]
+    },
+    {
+      "id": "W-007-U",
+      "name": "Tempest",
+      "description": "The Wind Blessing's Ultimate. Call down a raging storm of wind and lightning on a location of your choice.\n\n+10% DMG per LV\n+10% Radius per LV",
+      "x": 700,
+      "y": -500,
+      "icon": "",
+      "color": "#9c9c9c",
+      "shape": "diamond",
+      "cost": 5,
+      "maxRank": 5,
+      "category": "wind",
+      "connections": []
+    },
+    {
+      "id": "M-002",
+      "name": "Magical Stamina",
+      "description": "Increase your magic reserves, allowing you to cast more spells.\n\n+5% Max Mana/Mana Regeneration per LV",
+      "x": 0,
+      "y": -1100,
+      "icon": "",
+      "color": "#3c23a8",
+      "shape": "circle",
+      "cost": 2,
+      "maxRank": 20,
+      "category": "magic",
+      "connections": [
+        "M-003-3",
+        "M-003-1",
+        "M-003-2"
+      ]
+    },
+    {
+      "id": "M-003-1",
+      "name": "Rushing Magic",
+      "description": "+10% Mana Regeneration per LV",
+      "x": -200,
+      "y": -1400,
+      "icon": "",
+      "color": "#3c23a8",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": [
+        "M-004"
+      ]
+    },
+    {
+      "id": "M-003-2",
+      "name": "Roaring Magic",
+      "description": "+10% Spell Damage per LV",
+      "x": 0,
+      "y": -1400,
+      "icon": "",
+      "color": "#3c23a8",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": [
+        "M-004"
+      ]
+    },
+    {
+      "id": "M-003-3",
+      "name": "Colder yet Colder Magic",
+      "description": "-10% Spell Cooldown per LV",
+      "x": 200,
+      "y": -1400,
+      "icon": "",
+      "color": "#3c23a8",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": [
+        "M-004"
+      ]
+    },
+    {
+      "id": "M-004",
+      "name": "Gem Adeptness",
+      "description": "Gain the ability to socket gems into your gear",
+      "x": 0,
+      "y": -1600,
+      "icon": "",
+      "color": "#3c23a8",
+      "shape": "square",
+      "cost": 4,
+      "maxRank": 1,
+      "category": "magic",
+      "connections": [
+        "M-005"
+      ]
+    },
+    {
+      "id": "M-005",
+      "name": "Gem Mastery",
+      "description": "Gems provide 5% more of their respective stat.\n\n+5% per LV",
+      "x": 0,
+      "y": -1900,
+      "icon": "",
+      "color": "#3c23a8",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 5,
+      "category": "magic",
+      "connections": [
+        "M-005-1",
+        "M-005-2",
+        "M-005-3",
+        "M-005-4",
+        "M-005-5",
+        "M-005-6"
+      ]
+    },
+    {
+      "id": "M-005-4",
+      "name": "Sapphire Mastery",
+      "description": "Sapphires give +10% more of their respective stat.\n\n+5% per LV",
+      "x": -100,
+      "y": -2000,
+      "icon": "",
+      "color": "#0000ff",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": []
+    },
+    {
+      "id": "M-005-3",
+      "name": "Emerald Mastery",
+      "description": "Emeralds give +10% more of their respective stat.\n\n+5% per LV",
+      "x": 100,
+      "y": -2000,
+      "icon": "",
+      "color": "#1eff00",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": []
+    },
+    {
+      "id": "M-005-5",
+      "name": "Amethyst Mastery",
+      "description": "Amethysts give +10% more of their respective stat.\n\n+5% per LV",
+      "x": -100,
+      "y": -1900,
+      "icon": "",
+      "color": "#6e00ff",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": []
+    },
+    {
+      "id": "M-005-2",
+      "name": "Topaz Mastery",
+      "description": "Topazes give +10% more of their respective stat.\n\n+5% per LV",
+      "x": 100,
+      "y": -1900,
+      "icon": "",
+      "color": "#fff700",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": []
+    },
+    {
+      "id": "M-005-1",
+      "name": "Ruby Mastery",
+      "description": "Rubies give +10% more of their respective stat.\n\n+5% per LV",
+      "x": 100,
+      "y": -1800,
+      "icon": "",
+      "color": "#ff0000",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": []
+    },
+    {
+      "id": "M-005-6",
+      "name": "Opal Mastery",
+      "description": "Opals give +10% more of their respective stat.\n\n+5% per LV",
+      "x": -100,
+      "y": -1800,
+      "icon": "",
+      "color": "#d1d1d1",
+      "shape": "circle",
+      "cost": 3,
+      "maxRank": 10,
+      "category": "magic",
+      "connections": []
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://csfshcoujqyh2"]
+
+[ext_resource type="PackedScene" uid="uid://dv6sgt7v0ahl7" path="res://FlatTestArea.glb" id="1_hly68"]
+[ext_resource type="PackedScene" uid="uid://e831lfn753f6" path="res://player.tscn" id="2_bvgre"]
+[ext_resource type="Script" uid="uid://cpirt86uef2vy" path="res://smooth_follow_camera.gd" id="3_ea1x0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bvgre"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ea1x0"]
+sky_material = SubResource("ProceduralSkyMaterial_bvgre")
+
+[sub_resource type="Environment" id="Environment_e08lw"]
+background_mode = 2
+sky = SubResource("Sky_ea1x0")
+glow_enabled = true
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bvgre"]
+data = PackedVector3Array(1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1)
+
+[node name="Node3D" type="Node3D" unique_id=875945762]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=241543678]
+environment = SubResource("Environment_e08lw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1681835099]
+transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="FlatTestArea" parent="." unique_id=80869954 instance=ExtResource("1_hly68")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.33364332, 0, 1.4473486)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FlatTestArea/Cube" parent_id_path=PackedInt32Array(80869954, 1731787705) index="0" unique_id=39322383]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FlatTestArea/Cube/StaticBody3D" unique_id=1342233049]
+shape = SubResource("ConcavePolygonShape3D_bvgre")
+
+[node name="CharacterBody3D" parent="." unique_id=1212322773 node_paths=PackedStringArray("camera") instance=ExtResource("2_bvgre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5210724, 0)
+camera = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=953299245 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.915487, 0.40234762, 0, -0.40234762, 0.915487, 0, 5.4073052, 5.327442)
+current = true
+script = ExtResource("3_ea1x0")
+target = NodePath("../CharacterBody3D")
+
+[editable path="FlatTestArea"]

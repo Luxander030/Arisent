@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill Tree Editor</title>
+<style>
+	:root {
+		--bg: #14161b;
+		--panel: #1c1f26;
+		--panel-2: #242832;
+		--line: #333845;
+		--text: #e6e8ee;
+		--muted: #9097a6;
+		--accent: #f0b43c;
+		--danger: #e05a5a;
+		--grid: #1d2028;
+		--grid-major: #252934;
+	}
+	* { box-sizing: border-box; }
+	html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+		font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+	body { display: flex; flex-direction: column; overflow: hidden; }
+	header { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 8px 12px;
+		background: var(--panel); border-bottom: 1px solid var(--line); }
+	header .title { font-weight: 600; margin-right: 6px; }
+	header input[type=text] { width: 180px; }
+	header .spacer { flex: 1; }
+	main { flex: 1; display: flex; min-height: 0; }
+	#stage { flex: 1; position: relative; min-width: 0; }
+	canvas { display: block; width: 100%; height: 100%; cursor: default; touch-action: none; }
+	#status { position: absolute; left: 12px; bottom: 10px; color: var(--muted); font-size: 12px;
+		pointer-events: none; background: rgba(20, 22, 27, 0.8); padding: 4px 8px; border-radius: 4px; }
+	#help { position: absolute; right: 12px; bottom: 10px; color: var(--muted); font-size: 12px;
+		background: rgba(20, 22, 27, 0.85); padding: 8px 10px; border-radius: 6px; max-width: 300px;
+		border: 1px solid var(--line); }
+	#help b { color: var(--text); font-weight: 500; }
+	aside { width: 320px; background: var(--panel); border-left: 1px solid var(--line); overflow-y: auto;
+		padding: 14px; }
+	aside h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+		margin: 0 0 10px; font-weight: 600; }
+	aside h3 { font-size: 12px; color: var(--muted); margin: 16px 0 6px; font-weight: 600; }
+	label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+	input, textarea, select, button { font: inherit; color: var(--text); }
+	input[type=text], input[type=number], textarea, select {
+		width: 100%; background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px;
+		padding: 6px 8px; outline: none; }
+	input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+	input.invalid { border-color: var(--danger); }
+	textarea { min-height: 90px; resize: vertical; }
+	input[type=color] { width: 100%; height: 32px; padding: 2px; background: var(--panel-2);
+		border: 1px solid var(--line); border-radius: 5px; }
+	.row { display: flex; gap: 8px; }
+	.row > * { flex: 1; min-width: 0; }
+	button { background: var(--panel-2); border: 1px solid var(--line); border-radius: 5px;
+		padding: 6px 10px; cursor: pointer; white-space: nowrap; }
+	button:hover { border-color: #4a5060; }
+	button.primary { background: var(--accent); color: #1a1407; border-color: var(--accent); font-weight: 600; }
+	button.danger { color: var(--danger); }
+	button:disabled { opacity: 0.4; cursor: default; }
+	.conn { display: flex; align-items: center; gap: 6px; background: var(--panel-2); border: 1px solid var(--line);
+		border-radius: 5px; padding: 4px 4px 4px 8px; margin-bottom: 4px; }
+	.conn span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
+	.conn span:hover { color: var(--accent); }
+	.conn button { padding: 2px 8px; }
+	.hint { color: var(--muted); font-size: 12px; }
+	.err { color: var(--danger); font-size: 12px; min-height: 16px; margin-top: 2px; }
+	.check { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text); margin: 0; }
+	@media (max-width: 760px) {
+		main { flex-direction: column; }
+		#stage { min-height: 55vh; }
+		aside { width: 100%; border-left: none; border-top: 1px solid var(--line); }
+		#help { display: none; }
+	}
+</style>
+</head>
+<body>
+<header>
+	<span class="title">Skill Tree Editor</span>
+	<input type="text" id="treeName" title="Tree name (used as the file name)">
+	<button id="btnAdd" title="Add a skill in the middle of the view (N)">+ Skill</button>
+	<button id="btnUndo" title="Undo (Ctrl/Cmd+Z)">Undo</button>
+	<button id="btnRedo" title="Redo (Ctrl/Cmd+Shift+Z)">Redo</button>
+	<button id="btnFit" title="Fit the whole tree in view (F)">Fit view</button>
+	<label class="check"><input type="checkbox" id="snap" checked> Snap to grid</label>
+	<span class="spacer"></span>
+	<button id="btnNew" class="danger">New tree</button>
+	<button id="btnImport">Import JSON</button>
+	<button id="btnExport" class="primary">Download JSON</button>
+	<input type="file" id="fileInput" accept=".json,application/json" hidden>
+</header>
+<main>
+	<div id="stage">
+		<canvas id="canvas"></canvas>
+		<div id="status"></div>
+		<div id="help">
+			<b>Double-click</b> empty space: new skill<br>
+			<b>Drag</b> a skill: move it · <b>drag</b> empty space: pan · <b>wheel</b>: zoom<br>
+			<b>Drag from the ● handle</b> (or Shift+drag a skill) onto another skill to connect<br>
+			<b>Click a line</b> to select it · <b>Delete</b> removes the selection<br>
+			<b>Ctrl/Cmd+D</b> duplicates · <b>Ctrl/Cmd+Z</b> undo
+		</div>
+	</div>
+	<aside id="panel"></aside>
+</main>
+
+<script>
+"use strict";
+
+// ---- data ---------------------------------------------------------------------------------
+// A skill connects to (unlocks) the skills listed in `connections`: an arrow A → B means
+// "A is required before B".
+const SHAPES = ["circle", "square", "diamond", "hexagon"];
+const RADIUS = 30;
+const GRID = 20;
+const STORAGE_KEY = "skill-tree-editor/v1";
+
+let tree = { name: "Skill Tree", nodes: [] };
+let selection = null;            // { type: "node", id } | { type: "edge", from, to } | null
+let view = { x: 0, y: 0, scale: 1 };  // screen = world * scale + (x, y)
+let undoStack = [], redoStack = [];
+
+function sampleTree() {
+	const n = (id, name, x, y, icon, color, cost, connections, description) =>
+		({ id, name, description, x, y, icon, color, shape: "circle", cost, maxRank: 1, category: "", connections });
+	return {
+		name: "Combat & Movement",
+		nodes: [
+			n("steady_hands", "Steady Hands", -200, -120, "✦", "#d9822b", 1, ["quick_draw", "marksman"], "Less weapon spread while standing still."),
+			n("quick_draw", "Quick Draw", -320, 20, "⚡", "#d9822b", 1, ["fast_reload"], "Switch weapons 30% faster."),
+			n("marksman", "Marksman", -80, 20, "◎", "#d9822b", 2, ["headhunter"], "+10% damage beyond 30 m."),
+			n("fast_reload", "Fast Reload", -320, 160, "↻", "#d9822b", 2, [], "Reload 25% faster."),
+			n("headhunter", "Headhunter", -80, 160, "☠", "#c0392b", 3, [], "Headshots deal an extra 50% damage."),
+			n("light_feet", "Light Feet", 200, -120, "➶", "#2e9e6a", 1, ["bunny_hop", "climber"], "+5% movement speed."),
+			n("bunny_hop", "Bunny Hop", 120, 20, "⤴", "#2e9e6a", 2, [], "Keep your speed when chaining jumps."),
+			n("climber", "Climber", 280, 20, "⇡", "#2e9e6a", 1, [], "Climb ladders twice as fast."),
+		],
+	};
+}
+
+function normalizeNode(raw, i) {
+	const num = (v, d) => (Number.isFinite(Number(v)) ? Number(v) : d);
+	return {
+		id: String(raw.id ?? `skill_${i + 1}`).trim() || `skill_${i + 1}`,
+		name: String(raw.name ?? raw.id ?? "New skill"),
+		description: String(raw.description ?? ""),
+		x: num(raw.x, i * 80), y: num(raw.y, 0),
+		icon: String(raw.icon ?? ""),
+		color: /^#[0-9a-f]{6}$/i.test(raw.color) ? raw.color : "#4a7bd0",
+		shape: SHAPES.includes(raw.shape) ? raw.shape : "circle",
+		cost: Math.max(0, Math.round(num(raw.cost, 1))),
+		maxRank: Math.max(1, Math.round(num(raw.maxRank, 1))),
+		category: String(raw.category ?? ""),
+		connections: Array.isArray(raw.connections) ? raw.connections.map(String) : [],
+	};
+}
+
+function normalizeTree(raw) {
+	if (!raw || !Array.isArray(raw.nodes)) throw new Error("The file has no \"nodes\" list.");
+	const nodes = raw.nodes.map(normalizeNode);
+	const seen = new Set();
+	for (const n of nodes) {
+		if (seen.has(n.id)) throw new Error(`Duplicate skill ID "${n.id}".`);
+		seen.add(n.id);
+	}
+	for (const n of nodes) n.connections = [...new Set(n.connections)].filter(c => seen.has(c) && c !== n.id);
+	return { name: String(raw.name ?? "Skill Tree"), nodes };
+}
+
+const byId = id => tree.nodes.find(n => n.id === id);
+const selectedNode = () => (selection?.type === "node" ? byId(selection.id) : null);
+
+function uniqueId(base) {
+	base = base.replace(/[^a-z0-9_]+/gi, "_").replace(/^_+|_+$/g, "").toLowerCase() || "skill";
+	if (!byId(base)) return base;
+	let i = 2;
+	while (byId(`${base}_${i}`)) i++;
+	return `${base}_${i}`;
+}
+
+// Would an edge from → to create a loop (to already leads back to from)?
+function createsCycle(from, to) {
+	const stack = [to], seen = new Set();
+	while (stack.length) {
+		const id = stack.pop();
+		if (id === from) return true;
+		if (seen.has(id)) continue;
+		seen.add(id);
+		const n = byId(id);
+		if (n) stack.push(...n.connections);
+	}
+	return false;
+}
+
+// ---- undo / persistence ------------------------------------------------------------------
+const snapshot = () => JSON.stringify(tree);
+
+function pushUndo(before) {
+	if (before === snapshot()) return;
+	undoStack.push(before);
+	if (undoStack.length > 200) undoStack.shift();
+	redoStack = [];
+	changed();
+}
+
+function mutate(fn) {
+	const before = snapshot();
+	fn();
+	pushUndo(before);
+}
+
+function restore(json) {
+	tree = JSON.parse(json);
+	if (selection?.type === "node" && !byId(selection.id)) selection = null;
+	if (selection?.type === "edge" && !byId(selection.from)?.connections.includes(selection.to)) selection = null;
+	changed();
+	renderPanel();
+}
+
+function undo() {
+	if (!undoStack.length) return;
+	redoStack.push(snapshot());
+	restore(undoStack.pop());
+}
+
+function redo() {
+	if (!redoStack.length) return;
+	undoStack.push(snapshot());
+	restore(redoStack.pop());
+}
+
+function changed() {
+	try { localStorage.setItem(STORAGE_KEY, snapshot()); } catch (_) { /* storage unavailable */ }
+	$("btnUndo").disabled = !undoStack.length;
+	$("btnRedo").disabled = !redoStack.length;
+	if (document.activeElement !== $("treeName")) $("treeName").value = tree.name;
+	draw();
+}
+
+// ---- canvas ----------------------------------------------------------------------------------
+const $ = id => document.getElementById(id);
+const canvas = $("canvas");
+const ctx = canvas.getContext("2d");
+let dpr = 1;
+let hover = null;          // { type: "node"|"handle"|"edge", ... }
+let drag = null;           // current pointer interaction
+let pointerWorld = { x: 0, y: 0 };
+
+function resize() {
+	dpr = window.devicePixelRatio || 1;
+	const r = canvas.getBoundingClientRect();
+	canvas.width = Math.max(1, Math.round(r.width * dpr));
+	canvas.height = Math.max(1, Math.round(r.height * dpr));
+	draw();
+}
+
+const toWorld = (sx, sy) => ({ x: (sx - view.x) / view.scale, y: (sy - view.y) / view.scale });
+function eventPos(e) {
+	const r = canvas.getBoundingClientRect();
+	return { x: e.clientX - r.left, y: e.clientY - r.top };
+}
+
+const handlePos = n => ({ x: n.x + RADIUS + 2, y: n.y });
+
+function nodeAt(p) {
+	for (let i = tree.nodes.length - 1; i >= 0; i--) {
+		const n = tree.nodes[i];
+		if (Math.hypot(p.x - n.x, p.y - n.y) <= RADIUS) return n;
+	}
+	return null;
+}
+
+function handleAt(p) {
+	const sel = selectedNode();
+	const candidates = [sel, hover?.type === "node" || hover?.type === "handle" ? byId(hover.id) : null];
+	for (const n of candidates) {
+		if (!n) continue;
+		const h = handlePos(n);
+		if (Math.hypot(p.x - h.x, p.y - h.y) <= 9 / Math.min(view.scale, 1)) return n;
+	}
+	return null;
+}
+
+// Edge endpoints on the node borders.
+function edgeEnds(a, b) {
+	const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
+	const ux = dx / len, uy = dy / len;
+	return { x1: a.x + ux * RADIUS, y1: a.y + uy * RADIUS, x2: b.x - ux * (RADIUS + 4), y2: b.y - uy * (RADIUS + 4), ux, uy };
+}
+
+function edgeAt(p) {
+	const tol = 7 / view.scale;
+	for (const a of tree.nodes) {
+		for (const id of a.connections) {
+			const b = byId(id);
+			if (!b) continue;
+			const { x1, y1, x2, y2 } = edgeEnds(a, b);
+			const vx = x2 - x1, vy = y2 - y1;
+			const t = Math.max(0, Math.min(1, ((p.x - x1) * vx + (p.y - y1) * vy) / (vx * vx + vy * vy || 1)));
+			if (Math.hypot(p.x - (x1 + vx * t), p.y - (y1 + vy * t)) <= tol) return { from: a.id, to: b.id };
+		}
+	}
+	return null;
+}
+
+function shapePath(n, r) {
+	ctx.beginPath();
+	switch (n.shape) {
+		case "square": {
+			const s = r * 0.88, c = r * 0.25;
+			ctx.roundRect(n.x - s, n.y - s, s * 2, s * 2, c);
+			break;
+		}
+		case "diamond":
+			ctx.moveTo(n.x, n.y - r * 1.12); ctx.lineTo(n.x + r * 1.12, n.y);
+			ctx.lineTo(n.x, n.y + r * 1.12); ctx.lineTo(n.x - r * 1.12, n.y); ctx.closePath();
+			break;
+		case "hexagon":
+			for (let i = 0; i < 6; i++) {
+				const a = Math.PI / 3 * i + Math.PI / 6;
+				ctx[i ? "lineTo" : "moveTo"](n.x + Math.cos(a) * r * 1.05, n.y + Math.sin(a) * r * 1.05);
+			}
+			ctx.closePath();
+			break;
+		default:
+			ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+	}
+}
+
+function arrow(x1, y1, x2, y2, ux, uy, color, width) {
+	ctx.strokeStyle = color;
+	ctx.fillStyle = color;
+	ctx.lineWidth = width;
+	ctx.beginPath();
+	ctx.moveTo(x1, y1);
+	ctx.lineTo(x2 - ux * 6, y2 - uy * 6);
+	ctx.stroke();
+	const s = 6 + width * 1.5;
+	ctx.beginPath();
+	ctx.moveTo(x2, y2);
+	ctx.lineTo(x2 - ux * s - uy * s * 0.6, y2 - uy * s + ux * s * 0.6);
+	ctx.lineTo(x2 - ux * s + uy * s * 0.6, y2 - uy * s - ux * s * 0.6);
+	ctx.closePath();
+	ctx.fill();
+}
+
+function drawGrid(w, h) {
+	const step = GRID * view.scale;
+	if (step < 6) return;
+	const tl = toWorld(0, 0), br = toWorld(w, h);
+	for (const major of [false, true]) {
+		const g = major ? GRID * 5 : GRID;
+		ctx.strokeStyle = major ? css("--grid-major") : css("--grid");
+		ctx.lineWidth = 1 / view.scale;
+		ctx.beginPath();
+		for (let x = Math.floor(tl.x / g) * g; x <= br.x; x += g) { ctx.moveTo(x, tl.y); ctx.lineTo(x, br.y); }
+		for (let y = Math.floor(tl.y / g) * g; y <= br.y; y += g) { ctx.moveTo(tl.x, y); ctx.lineTo(br.x, y); }
+		ctx.stroke();
+	}
+}
+
+const cssCache = {};
+const css = name => (cssCache[name] ??= getComputedStyle(document.documentElement).getPropertyValue(name).trim());
+
+function truncate(text, max) {
+	if (ctx.measureText(text).width <= max) return text;
+	while (text.length > 1 && ctx.measureText(text + "…").width > max) text = text.slice(0, -1);
+	return text + "…";
+}
+
+function draw() {
+	const w = canvas.width / dpr, h = canvas.height / dpr;
+	ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+	ctx.fillStyle = css("--bg");
+	ctx.fillRect(0, 0, w, h);
+	ctx.setTransform(dpr * view.scale, 0, 0, dpr * view.scale, dpr * view.x, dpr * view.y);
+	drawGrid(w, h);
+
+	const sel = selection;
+	// Edges
+	for (const a of tree.nodes) {
+		for (const id of a.connections) {
+			const b = byId(id);
+			if (!b) continue;
+			const e = edgeEnds(a, b);
+			const isSel = sel?.type === "edge" && sel.from === a.id && sel.to === b.id;
+			const isHover = hover?.type === "edge" && hover.from === a.id && hover.to === b.id;
+			const touchesSel = sel?.type === "node" && (sel.id === a.id || sel.id === b.id);
+			const color = isSel ? css("--accent") : isHover ? "#c9cede" : touchesSel ? "#8d96ab" : "#5a6173";
+			arrow(e.x1, e.y1, e.x2, e.y2, e.ux, e.uy, color, isSel ? 3.5 : 2.5);
+		}
+	}
+	// Connection being dragged
+	if (drag?.mode === "connect") {
+		const a = byId(drag.from);
+		const target = nodeAt(pointerWorld);
+		const ok = target && validConnection(a.id, target.id) === "";
+		const to = target && ok ? target : { x: pointerWorld.x, y: pointerWorld.y };
+		const dx = to.x - a.x, dy = to.y - a.y, len = Math.hypot(dx, dy) || 1;
+		const ux = dx / len, uy = dy / len;
+		const end = target && ok ? RADIUS + 4 : 0;
+		ctx.setLineDash([8, 6]);
+		arrow(a.x + ux * RADIUS, a.y + uy * RADIUS, to.x - ux * end, to.y - uy * end, ux, uy,
+			target && !ok ? css("--danger") : css("--accent"), 2.5);
+		ctx.setLineDash([]);
+	}
+	// Nodes
+	ctx.textAlign = "center";
+	ctx.textBaseline = "middle";
+	for (const n of tree.nodes) {
+		const isSel = sel?.type === "node" && sel.id === n.id;
+		const isHover = (hover?.type === "node" || hover?.type === "handle") && hover.id === n.id;
+		if (isSel) {
+			ctx.shadowColor = css("--accent");
+			ctx.shadowBlur = 18;
+		}
+		shapePath(n, RADIUS);
+		ctx.fillStyle = n.color;
+		ctx.fill();
+		ctx.shadowBlur = 0;
+		ctx.lineWidth = isSel ? 3.5 : 2;
+		ctx.strokeStyle = isSel ? css("--accent") : isHover ? "#ffffff" : "rgba(255,255,255,0.35)";
+		ctx.stroke();
+		// Icon, or initials when there is no icon
+		ctx.fillStyle = "#fff";
+		const icon = n.icon || n.name.split(/\s+/).map(s => s[0] || "").join("").slice(0, 2).toUpperCase();
+		ctx.font = `600 ${n.icon ? 22 : 16}px system-ui, sans-serif`;
+		ctx.fillText(icon, n.x, n.y + 1);
+		// Name
+		ctx.font = "500 13px system-ui, sans-serif";
+		ctx.fillStyle = css("--text");
+		ctx.fillText(truncate(n.name, 150), n.x, n.y + RADIUS + 15);
+		// Cost / rank badge
+		if (n.cost > 0 || n.maxRank > 1) {
+			const label = n.maxRank > 1 ? `${n.cost} · 0/${n.maxRank}` : `${n.cost}`;
+			ctx.font = "600 11px system-ui, sans-serif";
+			const bw = ctx.measureText(label).width + 10;
+			const bx = n.x + RADIUS * 0.7, by = n.y - RADIUS * 0.85;
+			ctx.fillStyle = "#101216";
+			ctx.beginPath();
+			ctx.roundRect(bx - bw / 2, by - 9, bw, 18, 9);
+			ctx.fill();
+			ctx.strokeStyle = "rgba(255,255,255,0.25)";
+			ctx.lineWidth = 1;
+			ctx.stroke();
+			ctx.fillStyle = css("--accent");
+			ctx.fillText(label, bx, by + 0.5);
+		}
+		// Connect handle
+		if (isSel || isHover) {
+			const hp = handlePos(n);
+			const hot = hover?.type === "handle" && hover.id === n.id;
+			ctx.beginPath();
+			ctx.arc(hp.x, hp.y, hot ? 8 : 6, 0, Math.PI * 2);
+			ctx.fillStyle = hot ? css("--accent") : "#e6e8ee";
+			ctx.fill();
+			ctx.strokeStyle = "#14161b";
+			ctx.lineWidth = 2;
+			ctx.stroke();
+		}
+	}
+	if (!tree.nodes.length) {
+		ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+		ctx.fillStyle = css("--muted");
+		ctx.font = "15px system-ui, sans-serif";
+		ctx.fillText("Double-click anywhere (or press + Skill) to add your first skill", w / 2, h / 2);
+	}
+	$("status").textContent = `${tree.nodes.length} skills · ${tree.nodes.reduce((s, n) => s + n.connections.length, 0)} connections · ${Math.round(view.scale * 100)}%`;
+}
+
+// ---- editing actions ------------------------------------------------------------------------
+const snapV = v => ($("snap").checked ? Math.round(v / GRID) * GRID : Math.round(v));
+
+function addNode(x, y, extra = {}) {
+	let node;
+	mutate(() => {
+		node = normalizeNode({ name: "New skill", ...extra, x: snapV(x), y: snapV(y), id: uniqueId(extra.id || "skill") }, 0);
+		tree.nodes.push(node);
+	});
+	select({ type: "node", id: node.id });
+	return node;
+}
+
+function deleteSelection() {
+	if (!selection) return;
+	mutate(() => {
+		if (selection.type === "node") {
+			const id = selection.id;
+			tree.nodes = tree.nodes.filter(n => n.id !== id);
+			for (const n of tree.nodes) n.connections = n.connections.filter(c => c !== id);
+		} else {
+			const a = byId(selection.from);
+			if (a) a.connections = a.connections.filter(c => c !== selection.to);
+		}
+	});
+	select(null);
+}
+
+function duplicateSelected() {
+	const n = selectedNode();
+	if (!n) return;
+	addNode(n.x + GRID * 3, n.y + GRID * 3, { ...structuredClone(n), id: n.id, connections: [...n.connections] });
+}
+
+// Returns "" if from → to is allowed, otherwise the reason.
+function validConnection(from, to) {
+	if (from === to) return "A skill can't connect to itself.";
+	const a = byId(from);
+	if (!a || !byId(to)) return "Unknown skill.";
+	if (a.connections.includes(to)) return "Already connected.";
+	if (createsCycle(from, to)) return "That would make a loop (the target already leads back here).";
+	return "";
+}
+
+function connect(from, to) {
+	const why = validConnection(from, to);
+	if (why) { flash(why); return false; }
+	mutate(() => byId(from).connections.push(to));
+	renderPanel();
+	return true;
+}
+
+function disconnect(from, to) {
+	mutate(() => { const a = byId(from); a.connections = a.connections.filter(c => c !== to); });
+	renderPanel();
+}
+
+function renameId(node, newId) {
+	newId = newId.trim();
+	if (!newId) return "The ID can't be empty.";
+	if (newId !== node.id && byId(newId)) return `"${newId}" is already used by another skill.`;
+	if (newId === node.id) return "";
+	mutate(() => {
+		const old = node.id;
+		node.id = newId;
+		for (const n of tree.nodes) n.connections = n.connections.map(c => (c === old ? newId : c));
+		if (selection?.type === "node" && selection.id === old) selection.id = newId;
+	});
+	return "";
+}
+
+function select(s) {
+	selection = s;
+	renderPanel();
+	draw();
+}
+
+let flashTimer;
+function flash(msg) {
+	const el = $("status");
+	clearTimeout(flashTimer);
+	draw();
+	el.textContent = msg;
+	el.style.color = css("--danger");
+	flashTimer = setTimeout(() => { el.style.color = ""; draw(); }, 2500);
+}
+
+function fitView() {
+	const r = canvas.getBoundingClientRect();
+	if (!tree.nodes.length) { view = { x: r.width / 2, y: r.height / 2, scale: 1 }; draw(); return; }
+	const xs = tree.nodes.map(n => n.x), ys = tree.nodes.map(n => n.y);
+	const minX = Math.min(...xs) - RADIUS - 60, maxX = Math.max(...xs) + RADIUS + 60;
+	const minY = Math.min(...ys) - RADIUS - 40, maxY = Math.max(...ys) + RADIUS + 50;
+	const scale = Math.min(2, Math.max(0.2, Math.min(r.width / (maxX - minX), r.height / (maxY - minY))));
+	view = { scale, x: r.width / 2 - (minX + maxX) / 2 * scale, y: r.height / 2 - (minY + maxY) / 2 * scale };
+	draw();
+}
+
+function viewCenter() {
+	const r = canvas.getBoundingClientRect();
+	return toWorld(r.width / 2, r.height / 2);
+}
+
+// ---- pointer input ----------------------------------------------------------------------------
+canvas.addEventListener("pointerdown", e => {
+	canvas.setPointerCapture(e.pointerId);
+	const s = eventPos(e), p = toWorld(s.x, s.y);
+	pointerWorld = p;
+	if (e.button === 1 || e.button === 2) {
+		drag = { mode: "pan", sx: s.x, sy: s.y, vx: view.x, vy: view.y };
+		return;
+	}
+	if (e.button !== 0) return;
+	const handleNode = handleAt(p);
+	const n = nodeAt(p);
+	if (handleNode || (n && e.shiftKey)) {
+		drag = { mode: "connect", from: (handleNode || n).id };
+		select({ type: "node", id: (handleNode || n).id });
+		return;
+	}
+	if (n) {
+		// Bring to front, select, start moving.
+		tree.nodes.push(tree.nodes.splice(tree.nodes.indexOf(n), 1)[0]);
+		select({ type: "node", id: n.id });
+		drag = { mode: "move", id: n.id, dx: p.x - n.x, dy: p.y - n.y, before: snapshot(), moved: false };
+		return;
+	}
+	const edge = edgeAt(p);
+	if (edge) {
+		select({ type: "edge", ...edge });
+		return;
+	}
+	drag = { mode: "pan", sx: s.x, sy: s.y, vx: view.x, vy: view.y, click: true };
+});
+
+canvas.addEventListener("pointermove", e => {
+	const s = eventPos(e), p = toWorld(s.x, s.y);
+	pointerWorld = p;
+	if (drag?.mode === "pan") {
+		if (Math.hypot(s.x - drag.sx, s.y - drag.sy) > 3) drag.click = false;
+		view.x = drag.vx + s.x - drag.sx;
+		view.y = drag.vy + s.y - drag.sy;
+		draw();
+		return;
+	}
+	if (drag?.mode === "move") {
+		const n = byId(drag.id);
+		const nx = snapV(p.x - drag.dx), ny = snapV(p.y - drag.dy);
+		if (nx !== n.x || ny !== n.y) {
+			n.x = nx; n.y = ny; drag.moved = true;
+			updatePositionFields();
+			draw();
+		}
+		return;
+	}
+	if (drag?.mode === "connect") { draw(); return; }
+	// Hover feedback
+	const h = handleAt(p);
+	const n = h ? null : nodeAt(p);
+	const edge = h || n ? null : edgeAt(p);
+	const next = h ? { type: "handle", id: h.id } : n ? { type: "node", id: n.id } : edge ? { type: "edge", ...edge } : null;
+	if (JSON.stringify(next) !== JSON.stringify(hover)) {
+		hover = next;
+		canvas.style.cursor = h ? "crosshair" : n ? "grab" : edge ? "pointer" : "default";
+		draw();
+	}
+});
+
+canvas.addEventListener("pointerup", e => {
+	if (!drag) return;
+	const s = eventPos(e), p = toWorld(s.x, s.y);
+	if (drag.mode === "move" && drag.moved) pushUndo(drag.before);
+	if (drag.mode === "connect") {
+		const target = nodeAt(p);
+		if (target && target.id !== drag.from) connect(drag.from, target.id);
+	}
+	if (drag.mode === "pan" && drag.click) select(null);
+	drag = null;
+	draw();
+});
+
+canvas.addEventListener("dblclick", e => {
+	const s = eventPos(e), p = toWorld(s.x, s.y);
+	const n = nodeAt(p);
+	if (n) {
+		select({ type: "node", id: n.id });
+		$("f-name")?.focus();
+		$("f-name")?.select();
+	} else {
+		addNode(p.x, p.y);
+		$("f-name")?.focus();
+		$("f-name")?.select();
+	}
+});
+
+canvas.addEventListener("contextmenu", e => e.preventDefault());
+
+canvas.addEventListener("wheel", e => {
+	e.preventDefault();
+	const s = eventPos(e);
+	const before = toWorld(s.x, s.y);
+	const factor = Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0015));
+	view.scale = Math.min(3, Math.max(0.15, view.scale * factor));
+	view.x = s.x - before.x * view.scale;
+	view.y = s.y - before.y * view.scale;
+	draw();
+}, { passive: false });
+
+window.addEventListener("keydown", e => {
+	const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName) && document.activeElement.type !== "checkbox";
+	const mod = e.ctrlKey || e.metaKey;
+	if (mod && e.key.toLowerCase() === "z" && !typing) { e.preventDefault(); e.shiftKey ? redo() : undo(); return; }
+	if (mod && e.key.toLowerCase() === "y" && !typing) { e.preventDefault(); redo(); return; }
+	if (mod && e.key.toLowerCase() === "s") { e.preventDefault(); exportJson(); return; }
+	if (typing) {
+		if (e.key === "Escape") document.activeElement.blur();
+		return;
+	}
+	if (mod && e.key.toLowerCase() === "d") { e.preventDefault(); duplicateSelected(); return; }
+	if (e.key === "Delete" || e.key === "Backspace") { e.preventDefault(); deleteSelection(); }
+	else if (e.key === "Escape") select(null);
+	else if (e.key === "n" || e.key === "N") { const c = viewCenter(); addNode(c.x, c.y); }
+	else if (e.key === "f" || e.key === "F") fitView();
+	else if (e.key.startsWith("Arrow") && selectedNode()) {
+		e.preventDefault();
+		const n = selectedNode();
+		const step = e.shiftKey ? GRID * 5 : GRID;
+		mutate(() => {
+			if (e.key === "ArrowLeft") n.x -= step;
+			if (e.key === "ArrowRight") n.x += step;
+			if (e.key === "ArrowUp") n.y -= step;
+			if (e.key === "ArrowDown") n.y += step;
+		});
+		updatePositionFields();
+	}
+});
+
+// ---- side panel ---------------------------------------------------------------------------------
+const panel = $("panel");
+
+function el(tag, props = {}, ...children) {
+	const e = document.createElement(tag);
+	for (const [k, v] of Object.entries(props)) {
+		if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+		else if (k in e) e[k] = v;
+		else e.setAttribute(k, v);
+	}
+	for (const c of children) e.append(c);
+	return e;
+}
+
+// A field that edits node[key] live; the whole edit becomes one undo step when it's done.
+function field(node, key, labelText, type = "text", opts = {}) {
+	let before = null;
+	const input = type === "textarea" ? el("textarea") : type === "select" ? el("select") : el("input", { type });
+	input.id = `f-${key}`;
+	if (type === "select") for (const o of opts.options) input.append(el("option", { value: o, textContent: o }));
+	if (opts.min !== undefined) input.min = opts.min;
+	input.value = node[key];
+	input.addEventListener("focus", () => { before = snapshot(); });
+	input.addEventListener("input", () => {
+		let v = input.value;
+		if (type === "number") {
+			if (v === "" || !Number.isFinite(Number(v))) return;
+			v = Number(v);
+			if (opts.min !== undefined) v = Math.max(opts.min, v);
+			if (opts.integer) v = Math.round(v);
+		}
+		node[key] = v;
+		changed();
+	});
+	input.addEventListener("change", () => {
+		if (type === "number") input.value = node[key];
+		if (before !== null) pushUndo(before);
+		before = snapshot();
+	});
+	return [el("label", { htmlFor: input.id, textContent: labelText }), input];
+}
+
+function connectionRow(text, onOpen, onRemove) {
+	return el("div", { className: "conn" },
+		el("span", { textContent: text, title: "Select this skill", onclick: onOpen }),
+		el("button", { textContent: "✕", title: "Remove this connection", onclick: onRemove }));
+}
+
+function addConnectionPicker(node, incoming) {
+	const options = tree.nodes.filter(o => o.id !== node.id &&
+		(incoming ? validConnection(o.id, node.id) === "" : validConnection(node.id, o.id) === ""));
+	const sel = el("select", {},
+		el("option", { value: "", textContent: options.length ? (incoming ? "+ Add a requirement…" : "+ Add a skill it unlocks…") : "(nothing else can connect)" }),
+		...options.map(o => el("option", { value: o.id, textContent: `${o.name} (${o.id})` })));
+	sel.disabled = !options.length;
+	sel.addEventListener("change", () => {
+		if (!sel.value) return;
+		incoming ? connect(sel.value, node.id) : connect(node.id, sel.value);
+	});
+	return sel;
+}
+
+function renderPanel() {
+	panel.replaceChildren();
+	const node = selectedNode();
+	if (selection?.type === "edge") {
+		const a = byId(selection.from), b = byId(selection.to);
+		panel.append(
+			el("h2", { textContent: "Connection" }),
+			el("p", { className: "hint", textContent: `“${a.name}” must be unlocked before “${b.name}”.` }),
+			el("div", { className: "row" },
+				el("button", { textContent: `Select ${a.name}`, onclick: () => select({ type: "node", id: a.id }) }),
+				el("button", { textContent: `Select ${b.name}`, onclick: () => select({ type: "node", id: b.id }) })),
+			el("p"),
+			el("button", { className: "danger", textContent: "Delete connection", onclick: deleteSelection }));
+		return;
+	}
+	if (!node) {
+		panel.append(
+			el("h2", { textContent: "No skill selected" }),
+			el("p", { className: "hint", textContent: "Click a skill to edit it, or double-click empty space to create one. Drag from a skill's ● handle to another skill to connect them." }),
+			el("h3", { textContent: "Tree" }),
+			el("p", { className: "hint", textContent: `${tree.nodes.length} skills. Roots (no requirements): ${roots().map(n => n.name).join(", ") || "none"}.` }));
+		return;
+	}
+	const idErr = el("div", { className: "err" });
+	const idInput = el("input", { type: "text", id: "f-id", value: node.id, spellcheck: false });
+	idInput.addEventListener("input", () => {
+		const v = idInput.value.trim();
+		const bad = !v ? "The ID can't be empty." : v !== node.id && byId(v) ? `"${v}" is already used.` : "";
+		idInput.classList.toggle("invalid", !!bad);
+		idErr.textContent = bad;
+	});
+	idInput.addEventListener("change", () => {
+		const why = renameId(node, idInput.value);
+		if (why) { idInput.value = node.id; idInput.classList.remove("invalid"); idErr.textContent = ""; flash(why); }
+		else renderPanel();
+	});
+
+	const unlocks = node.connections.map(id => byId(id)).filter(Boolean);
+	const requires = tree.nodes.filter(o => o.connections.includes(node.id));
+
+	panel.append(
+		el("h2", { textContent: "Skill" }),
+		...field(node, "name", "Name"),
+		el("label", { htmlFor: "f-id", textContent: "ID (unique; used by connections and the game)" }), idInput, idErr,
+		...field(node, "description", "Description", "textarea"),
+		el("div", { className: "row" },
+			el("div", {}, ...field(node, "icon", "Icon (emoji or 1–2 letters)")),
+			el("div", {}, ...field(node, "color", "Colour", "color"))),
+		el("div", { className: "row" },
+			el("div", {}, ...field(node, "shape", "Shape", "select", { options: SHAPES })),
+			el("div", {}, ...field(node, "category", "Category"))),
+		el("div", { className: "row" },
+			el("div", {}, ...field(node, "cost", "Cost (points)", "number", { min: 0, integer: true })),
+			el("div", {}, ...field(node, "maxRank", "Max rank", "number", { min: 1, integer: true }))),
+		el("div", { className: "row" },
+			el("div", {}, ...field(node, "x", "X", "number")),
+			el("div", {}, ...field(node, "y", "Y", "number"))),
+
+		el("h3", { textContent: `Requires (${requires.length})` }),
+		...requires.map(o => connectionRow(`${o.name} (${o.id})`, () => select({ type: "node", id: o.id }), () => disconnect(o.id, node.id))),
+		addConnectionPicker(node, true),
+
+		el("h3", { textContent: `Unlocks (${unlocks.length})` }),
+		...unlocks.map(o => connectionRow(`${o.name} (${o.id})`, () => select({ type: "node", id: o.id }), () => disconnect(node.id, o.id))),
+		addConnectionPicker(node, false),
+
+		el("p"),
+		el("div", { className: "row" },
+			el("button", { textContent: "Duplicate", onclick: duplicateSelected }),
+			el("button", { className: "danger", textContent: "Delete skill", onclick: deleteSelection })));
+}
+
+function updatePositionFields() {
+	const n = selectedNode();
+	if (!n) return;
+	if ($("f-x") && document.activeElement !== $("f-x")) $("f-x").value = n.x;
+	if ($("f-y") && document.activeElement !== $("f-y")) $("f-y").value = n.y;
+}
+
+const roots = () => tree.nodes.filter(n => !tree.nodes.some(o => o.connections.includes(n.id)));
+
+// ---- import / export ----------------------------------------------------------------------------
+function exportJson() {
+	const data = {
+		format: "skill-tree",
+		version: 1,
+		name: tree.name,
+		nodes: tree.nodes.map(n => ({
+			id: n.id, name: n.name, description: n.description, x: n.x, y: n.y,
+			icon: n.icon, color: n.color, shape: n.shape, cost: n.cost, maxRank: n.maxRank,
+			category: n.category, connections: [...n.connections],
+		})),
+	};
+	const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+	const a = document.createElement("a");
+	a.href = URL.createObjectURL(blob);
+	a.download = (tree.name.trim().replace(/[\\/:*?"<>|]+/g, "_") || "skill_tree") + ".json";
+	document.body.append(a);
+	a.click();
+	a.remove();
+	setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+function importFile(file) {
+	const reader = new FileReader();
+	reader.onload = () => {
+		try {
+			const imported = normalizeTree(JSON.parse(reader.result));
+			mutate(() => { tree = imported; });
+			select(null);
+			fitView();
+		} catch (err) {
+			alert(`Couldn't import "${file.name}":\n${err.message}`);
+		}
+	};
+	reader.readAsText(file);
+}
+
+// ---- toolbar -------------------------------------------------------------------------------------
+$("btnAdd").onclick = () => { const c = viewCenter(); addNode(c.x, c.y); };
+$("btnUndo").onclick = undo;
+$("btnRedo").onclick = redo;
+$("btnFit").onclick = fitView;
+$("btnExport").onclick = exportJson;
+$("btnImport").onclick = () => $("fileInput").click();
+$("fileInput").onchange = e => {
+	if (e.target.files[0]) importFile(e.target.files[0]);
+	e.target.value = "";
+};
+$("btnNew").onclick = () => {
+	if (tree.nodes.length && !confirm("Start a new, empty tree? (You can undo this.)")) return;
+	mutate(() => { tree = { name: "Skill Tree", nodes: [] }; });
+	select(null);
+	fitView();
+};
+let nameBefore = null;
+$("treeName").addEventListener("focus", () => { nameBefore = snapshot(); });
+$("treeName").addEventListener("input", e => { tree.name = e.target.value; });
+$("treeName").addEventListener("change", () => { if (nameBefore) pushUndo(nameBefore); nameBefore = null; });
+
+// Drop a .json file anywhere to import it.
+window.addEventListener("dragover", e => e.preventDefault());
+window.addEventListener("drop", e => {
+	e.preventDefault();
+	const f = e.dataTransfer?.files?.[0];
+	if (f) importFile(f);
+});
+
+// ---- start ---------------------------------------------------------------------------------------
+try {
+	const saved = localStorage.getItem(STORAGE_KEY);
+	tree = saved ? normalizeTree(JSON.parse(saved)) : sampleTree();
+} catch (_) {
+	tree = sampleTree();
+}
+new ResizeObserver(resize).observe(canvas);
+resize();
+fitView();
+changed();
+renderPanel();
+</script>
+</body>
+</html>
